@@ -6,33 +6,83 @@
       <h2>Resume Form</h2>
       <form @submit.prevent="saveData">
         <div>
-          <label>Title</label>
+          <label for="title">Title</label>
           <input v-model="resume.title" placeholder="Your title">
         </div>
 
         <div>
-          <label>Description</label>
+          <label for="description">Description</label>
           <textarea v-model="resume.description" placeholder="Brief description"></textarea>
         </div>
 
         <!-- Contact Section -->
         <div>
           <h3>Contact Information</h3>
+          <label for="name">Name</label>
           <input v-model="resume.contact.name" placeholder="Name">
+          <label for="address">Address</label>
           <input v-model="resume.contact.address" placeholder="Address">
+          <label for="mobile">Mobile</label>
           <input v-model="resume.contact.mobile" placeholder="Mobile">
+          <label for="email">Email</label>
           <input v-model="resume.contact.email" placeholder="Email">
+        </div>
+
+        <!-- Experiences Section -->
+        <div>
+          <h3>Experience</h3>
+          <div v-for="(experience, index) in resume.experiences" :key="index" class="experience-item">
+            <input v-model="experience.company" placeholder="Company Name" />
+            <input v-model="experience.title" placeholder="Job Title" />
+            <input v-model="experience.startDate" placeholder="Start Date" type="date" />
+            <input v-model="experience.endDate" placeholder="End Date" type="date" />
+            <textarea v-model="experience.tasks[0]" placeholder="Task"></textarea>
+            <button type="button" @click="removeExperience(index)">Remove Experience</button>
+          </div>
+          <button type="button" @click="addExperience">Add Experience</button>
+        </div>
+
+        <!-- Education Section -->
+        <div>
+          <h3>Education</h3>
+          <div v-for="(education, index) in resume.educations" :key="index" class="education-item">
+            <input v-model="education.degree" placeholder="Degree" />
+            <input v-model="education.school" placeholder="School" />
+            <input v-model="education.startDate" placeholder="Start Date" type="date" />
+            <input v-model="education.endDate" placeholder="End Date" type="date" />
+            <button type="button" @click="removeEducation(index)">Remove Education</button>
+          </div>
+          <button type="button" @click="addEducation">Add Education</button>
         </div>
 
         <!-- Skills Section -->
         <div>
           <h3>Skills</h3>
-          <div v-for="(skill, index) in resume.skills[0].items" :key="index" class="skill-item">
-            <input v-model="skill.name" placeholder="Skill Name" />
-            <input v-model="skill.rating" placeholder="Skill Rating" />
-            <button type="button" @click="removeSkill(index)">Remove</button>
+          <div v-for="(skillCategory, categoryIndex) in resume.skills" :key="categoryIndex" class="skill-category">
+            <input v-model="skillCategory.title" placeholder="SkillCategory Title" />
+            <div v-for="(skill, skillIndex) in skillCategory.items" :key="skillIndex" class="skill-item">
+              <input v-model="skill.name" placeholder="Skill Name" />
+              <input v-model="skill.rating" placeholder="Skill Rating" />
+              <button type="button" @click="removeSkill(categoryIndex, skillIndex)">Remove Skill</button>
+            </div>
+            <button type="button" @click="addSkill(categoryIndex)">Add Skill</button>
+            <button type="button" @click="removeSkillCategory(categoryIndex)">Remove Skill Category</button>
           </div>
-          <button type="button" @click="addSkill">Add Skill</button>
+          <button type="button" @click="addSkillCategory">Add Skill Category</button>
+        </div>
+
+        <div>
+          <h3>Other Sections</h3>
+          <div v-for="(otherSection, sectionIndex) in resume.others" :key="sectionIndex" class="other-section">
+            <h4>{{ otherSection.title }}</h4>
+            <div v-for="(item, itemIndex) in otherSection.items" :key="itemIndex" class="other-item">
+              <input v-model="otherSection.items[itemIndex]" placeholder="Item Name" />
+              <button type="button" @click="removeItem(sectionIndex, itemIndex)">Remove Item</button>
+            </div>
+            <button type="button" @click="addItem(sectionIndex)">Add Item</button>
+            <button type="button" @click="removeSection(sectionIndex)">Remove Section</button>
+          </div>
+          <button type="button" @click="addSection">Add Other Section</button>
         </div>
 
         <button type="submit">Save Data</button>
@@ -49,12 +99,42 @@
         <p>{{ resume.contact.mobile }}</p>
         <p>{{ resume.contact.email }}</p>
 
-        <h4>Skills</h4>
+        <h4>Experience</h4>
         <ul>
-          <li v-for="(skill, index) in resume.skills[0].items" :key="index">
-            {{ skill.name }} - {{ skill.rating }}
+          <li v-for="(experience, index) in resume.experiences" :key="index">
+            <strong>{{ experience.company }}</strong> - {{ experience.title }} ({{ experience.startDate }} - {{ experience.endDate }})
+            <ul>
+              <li v-for="(task, taskIndex) in experience.tasks" :key="taskIndex">{{ task }}</li>
+            </ul>
           </li>
         </ul>
+
+        <h4>Education</h4>
+        <ul>
+          <li v-for="(education, index) in resume.educations" :key="index">
+            <strong>{{ education.degree }}</strong> - {{ education.school }} ({{ education.startDate }} - {{ education.endDate }})
+          </li>
+        </ul>
+
+        <h4>Skills</h4>
+        <div v-for="(skillCategory, categoryIndex) in resume.skills" :key="categoryIndex">
+          <h5>{{ skillCategory.title }}</h5>
+          <ul>
+            <li v-for="(skill, skillIndex) in skillCategory.items" :key="skillIndex">
+              {{ skill.name }} - {{ skill.rating }}
+            </li>
+          </ul>
+        </div>
+
+        <h4>Other Sections</h4>
+        <div v-for="(otherSection, sectionIndex) in resume.others" :key="sectionIndex">
+          <h5>{{ otherSection.title }}</h5>
+          <ul>
+            <li v-for="(item, itemIndex) in otherSection.items" :key="itemIndex">
+              {{ item }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   <!-- Export/Import Buttons -->
@@ -74,15 +154,81 @@ export default {
     };
   },
   methods: {
-    addSkill() {
-      this.resume.skills[0].items.push({
+        // Experience Methods
+        addExperience() {
+      this.resume.experiences.push({
+        company: "",
+        title: "",
+        startDate: "",
+        endDate: "",
+        tasks: [""]
+      });
+    },
+    removeExperience(index) {
+      this.resume.experiences.splice(index, 1);
+    },
+
+    // Education Methods
+    addEducation() {
+      this.resume.educations.push({
+        degree: "",
+        school: "",
+        startDate: "",
+        endDate: ""
+      });
+    },
+    removeEducation(index) {
+      this.resume.educations.splice(index, 1);
+    },
+    // Add Skill Category (e.g., "TechStacks")
+    addSkillCategory() {
+      this.resume.skills.push({
+        title: "New Category", // Default name for new categories
+        items: [{ name: "", rating: "" }] // Start with one empty skill entry
+      });
+    },
+
+    // Remove Skill Category
+    removeSkillCategory(categoryIndex) {
+      this.resume.skills.splice(categoryIndex, 1);
+    },
+
+    // Add Skill to a specific category
+    addSkill(categoryIndex) {
+      this.resume.skills[categoryIndex].items.push({
         name: "",
         rating: ""
       });
     },
-    removeSkill(index) {
-      this.resume.skills[0].items.splice(index, 1);
+
+    // Remove a skill from a specific category
+    removeSkill(categoryIndex, skillIndex) {
+      this.resume.skills[categoryIndex].items.splice(skillIndex, 1);
     },
+    // Add Other Section (e.g., "Certifications", "Side Projects")
+    addSection() {
+      this.resume.others.push({
+        title: "New Section", // Default title for the new section
+        items: [""] // Start with one empty item for the new section
+      });
+    },
+
+    // Remove Other Section
+    removeSection(sectionIndex) {
+      this.resume.others.splice(sectionIndex, 1);
+    },
+
+    // Add Item to a specific Other Section (e.g., add a new certification or project)
+    addItem(sectionIndex) {
+      this.resume.others[sectionIndex].items.push(""); // Adds an empty item
+    },
+
+    // Remove Item from a specific Other Section
+    removeItem(sectionIndex, itemIndex) {
+      this.resume.others[sectionIndex].items.splice(itemIndex, 1); // Removes the item at itemIndex
+    },
+
+
     saveData() {
       localStorage.setItem('resume', JSON.stringify(this.resume));
     },
