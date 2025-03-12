@@ -101,13 +101,42 @@ export default {
     },
     printResume() {
       const printWindow = window.open('', '', 'width=800,height=600');
-      printWindow.document.write('<html><head><title>Resume</title></head><body>');
-      printWindow.document.write('<h1>' + this.resume.title + '</h1>');
-      printWindow.document.write('<p>' + this.resume.description + '</p>');
-      printWindow.document.write('<p>' + this.resume.contact.name + '</p>');
-      printWindow.document.write('<p>' + this.resume.contact.mobile + '</p>');
-      printWindow.document.write('<p>' + this.resume.contact.email + '</p>');
-      printWindow.document.write('</body></html>');
+
+      // Get the HTML content of the preview section
+      const previewHTML = document.querySelector('.preview').innerHTML;
+
+      // Style for printing
+      const printStyles = `
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+          }
+          h1, h2, h3, h4 {
+            color: #333;
+          }
+          .preview {
+            max-width: 800px;
+            margin: 0 auto;
+          }
+          /* Add any other print styles here */
+        </style>
+      `;
+
+      // Write HTML to the print window
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Resume</title>
+            ${printStyles}
+          </head>
+          <body>
+            ${previewHTML}
+          </body>
+        </html>
+      `);
+
+      // Close the document and print
       printWindow.document.close();
       printWindow.print();
     }
