@@ -3,110 +3,73 @@
 
 <template>
   <div id="app">
-    <div class="form-container">
-      <h2>Resume Form</h2>
-      <form @submit.prevent="saveData">
-        <div>
-          <label for="title">Title</label>
-          <input v-model="resume.title" placeholder="Your title">
-        </div>
-
-        <div>
-          <label for="description">Description</label>
-          <textarea v-model="resume.description" placeholder="Brief description"></textarea>
-        </div>
-
-        <!-- Contact Section -->
-        <div>
-          <h3>Contact Information</h3>
-          <label for="name">Name</label>
-          <input v-model="resume.contact.name" placeholder="Name">
-          <label for="address">Address</label>
-          <input v-model="resume.contact.address" placeholder="Address">
-          <label for="mobile">Mobile</label>
-          <input v-model="resume.contact.mobile" placeholder="Mobile">
-          <label for="email">Email</label>
-          <input v-model="resume.contact.email" placeholder="Email">
-        </div>
-
-        <!-- Experiences Section -->
-        <div>
-          <h3>Experience</h3>
-          <div v-for="(experience, index) in resume.experiences" :key="index" class="experience-item">
-            <input v-model="experience.company" placeholder="Company Name" />
-            <input v-model="experience.title" placeholder="Job Title" />
-            <input v-model="experience.startDate" placeholder="Start Date" type="date" />
-            <input v-model="experience.endDate" placeholder="End Date" type="date" />
-            <textarea v-model="experience.tasks[0]" placeholder="Task"></textarea>
-            <button type="button" @click="removeExperience(index)">Remove Experience</button>
-          </div>
-          <button type="button" @click="addExperience">Add Experience</button>
-        </div>
-
-        <!-- Education Section -->
-        <div>
-          <h3>Education</h3>
-          <div v-for="(education, index) in resume.educations" :key="index" class="education-item">
-            <input v-model="education.degree" placeholder="Degree" />
-            <input v-model="education.school" placeholder="School" />
-            <input v-model="education.startDate" placeholder="Start Date" type="date" />
-            <input v-model="education.endDate" placeholder="End Date" type="date" />
-            <button type="button" @click="removeEducation(index)">Remove Education</button>
-          </div>
-          <button type="button" @click="addEducation">Add Education</button>
-        </div>
-
-        <!-- Skills Section -->
-        <div>
-          <h3>Skills</h3>
-          <div v-for="(skillCategory, categoryIndex) in resume.skills" :key="categoryIndex" class="skill-category">
-            <input v-model="skillCategory.title" placeholder="SkillCategory Title" />
-            <div v-for="(skill, skillIndex) in skillCategory.items" :key="skillIndex" class="skill-item">
-              <input v-model="skill.name" placeholder="Skill Name" />
-              <input v-model="skill.rating" placeholder="Skill Rating" />
-              <button type="button" @click="removeSkill(categoryIndex, skillIndex)">Remove Skill</button>
-            </div>
-            <button type="button" @click="addSkill(categoryIndex)">Add Skill</button>
-            <button type="button" @click="removeSkillCategory(categoryIndex)">Remove Skill Category</button>
-          </div>
-          <button type="button" @click="addSkillCategory">Add Skill Category</button>
-        </div>
-
-        <div>
-          <h3>Other Sections</h3>
-          <div v-for="(otherSection, sectionIndex) in resume.others" :key="sectionIndex" class="other-section">
-            <h4>{{ otherSection.title }}</h4>
-            <div v-for="(item, itemIndex) in otherSection.items" :key="itemIndex" class="other-item">
-              <input v-model="otherSection.items[itemIndex]" placeholder="Item Name" />
-              <button type="button" @click="removeItem(sectionIndex, itemIndex)">Remove Item</button>
-            </div>
-            <button type="button" @click="addItem(sectionIndex)">Add Item</button>
-            <button type="button" @click="removeSection(sectionIndex)">Remove Section</button>
-          </div>
-          <button type="button" @click="addSection">Add Other Section</button>
-        </div>
-
-        <button type="submit">Save Data</button>
-      </form>
+    <!-- Buttons on Top -->
+    <div class="top-buttons">
+      <button @click="exportData">Export Data</button>
+      <input type="file" @change="importData" />
+      <button @click="printResume">Print Resume</button>
     </div>
 
-    <div class="preview-container">
-      <h2>Resume Preview</h2>
-      <ResumeReview :resume="resume" />
+    <!-- Main Layout with Editor and Preview -->
+    <div class="main-layout">
+      <!-- Left Side: Editor -->
+      <div class="editor">
+        <h2>Resume Form</h2>
+        <form @submit.prevent="saveData">
+          <div>
+            <label for="title">Title</label>
+            <input v-model="resume.title" placeholder="Your title">
+          </div>
+
+          <div>
+            <label for="description">Description</label>
+            <textarea v-model="resume.description" placeholder="Brief description"></textarea>
+          </div>
+
+          <!-- Contact Editor Component -->
+          <ContactEditor :contact="resume.contact" />
+
+          <!-- Experience Editor Component -->
+          <ExperienceEditor :experiences="resume.experiences" />
+
+          <!-- Education Editor Component -->
+          <EducationEditor :educations="resume.educations" />
+
+          <!-- Skills Editor Component -->
+          <SkillsEditor :skills="resume.skills" />
+
+          <!-- Other Sections Editor Component -->
+          <OtherSectionsEditor :sections="resume.others" />
+
+          <button type="submit">Save Data</button>
+        </form>
+      </div>
+
+      <!-- Right Side: Preview -->
+      <div class="preview">
+        <h2>Resume Preview</h2>
+        <ResumeReview :resume="resume" />
+      </div>
     </div>
-  <!-- Export/Import Buttons -->
-    <button @click="exportData">Export Data</button>
-    <input type="file" @change="importData" />
-    <button @click="printResume">Print Resume</button>
   </div>
 </template>
 
 <script>
+import ContactEditor from './components/ContactEditor.vue';
+import ExperienceEditor from './components/ExperienceEditor.vue';
+import EducationEditor from './components/EducationEditor.vue';
+import SkillsEditor from './components/SkillsEditor.vue';
+import OtherSectionsEditor from './components/OtherSectionsEditor.vue';
 import ResumeReview from './components/ResumeReview.vue';
 import { resumeData } from './data';
 
 export default {
   components: {
+    ContactEditor,
+    ExperienceEditor,
+    EducationEditor,
+    OtherSectionsEditor,
+    SkillsEditor,
     ResumeReview
   },
   data() {
@@ -115,80 +78,6 @@ export default {
     };
   },
   methods: {
-        // Experience Methods
-        addExperience() {
-      this.resume.experiences.push({
-        company: "",
-        title: "",
-        startDate: "",
-        endDate: "",
-        tasks: [""]
-      });
-    },
-    removeExperience(index) {
-      this.resume.experiences.splice(index, 1);
-    },
-
-    // Education Methods
-    addEducation() {
-      this.resume.educations.push({
-        degree: "",
-        school: "",
-        startDate: "",
-        endDate: ""
-      });
-    },
-    removeEducation(index) {
-      this.resume.educations.splice(index, 1);
-    },
-    // Add Skill Category (e.g., "TechStacks")
-    addSkillCategory() {
-      this.resume.skills.push({
-        title: "New Category", // Default name for new categories
-        items: [{ name: "", rating: "" }] // Start with one empty skill entry
-      });
-    },
-
-    // Remove Skill Category
-    removeSkillCategory(categoryIndex) {
-      this.resume.skills.splice(categoryIndex, 1);
-    },
-
-    // Add Skill to a specific category
-    addSkill(categoryIndex) {
-      this.resume.skills[categoryIndex].items.push({
-        name: "",
-        rating: ""
-      });
-    },
-
-    // Remove a skill from a specific category
-    removeSkill(categoryIndex, skillIndex) {
-      this.resume.skills[categoryIndex].items.splice(skillIndex, 1);
-    },
-    // Add Other Section (e.g., "Certifications", "Side Projects")
-    addSection() {
-      this.resume.others.push({
-        title: "New Section", // Default title for the new section
-        items: [""] // Start with one empty item for the new section
-      });
-    },
-
-    // Remove Other Section
-    removeSection(sectionIndex) {
-      this.resume.others.splice(sectionIndex, 1);
-    },
-
-    // Add Item to a specific Other Section (e.g., add a new certification or project)
-    addItem(sectionIndex) {
-      this.resume.others[sectionIndex].items.push(""); // Adds an empty item
-    },
-
-    // Remove Item from a specific Other Section
-    removeItem(sectionIndex, itemIndex) {
-      this.resume.others[sectionIndex].items.splice(itemIndex, 1); // Removes the item at itemIndex
-    },
-
 
     saveData() {
       localStorage.setItem('resume', JSON.stringify(this.resume));
@@ -227,5 +116,90 @@ export default {
 </script>
 
 <style scoped>
-/* Add some styles for the form and preview */
+/* Global styles */
+#app {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+}
+
+.top-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ddd;
+}
+
+.top-buttons button,
+.top-buttons input {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Main layout */
+.main-layout {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Left Side: Editor */
+.editor {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 700px;
+  overflow-y: auto;
+}
+
+/* Right Side: Preview */
+.preview {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 700px;
+  overflow-y: auto;
+}
+
+h2, h3, h4 {
+  margin-bottom: 10px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button[type="button"] {
+  background-color: #e74c3c;
+  color: white;
+}
+
+button[type="submit"] {
+  background-color: #3498db;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.9;
+}
 </style>
