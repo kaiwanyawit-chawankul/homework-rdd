@@ -48,7 +48,7 @@
       <!-- Right Side: Preview -->
       <div class="preview">
         <h2>Resume Preview</h2>
-        <ResumeReview :resume="resume" />
+        <LeftRightPreview :resume="resume" />
       </div>
     </div>
   </div>
@@ -61,6 +61,7 @@ import EducationEditor from './components/EducationEditor.vue';
 import SkillsEditor from './components/SkillsEditor.vue';
 import OtherSectionsEditor from './components/OtherSectionsEditor.vue';
 import ResumeReview from './components/ResumeReview.vue';
+import LeftRightPreview from './components/LeftRightPreview.vue';
 import { resumeData } from './data';
 
 export default {
@@ -70,7 +71,8 @@ export default {
     EducationEditor,
     OtherSectionsEditor,
     SkillsEditor,
-    ResumeReview
+    ResumeReview,
+    LeftRightPreview
   },
   data() {
     return {
