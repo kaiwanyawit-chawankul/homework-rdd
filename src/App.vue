@@ -15,6 +15,16 @@
       <button @click="activeTab = 'editor'" :class="{ active: activeTab === 'editor' }">Editor</button>
       <button @click="activeTab = 'preview'" :class="{ active: activeTab === 'preview' }">Preview</button>
     </div>
+          <!-- Preview Layout Selector -->
+          <div class="preview-layout-selector">
+          <label for="previewLayout">Choose Preview Layout:</label>
+          <select v-model="selectedPreviewLayout">
+            <option value="lite">Lite Preview</option>
+            <option value="nice">Nice Preview</option>
+            <option value="left-right">Left-Right Preview</option>
+            <option value="resume">Resume Preview</option>
+          </select>
+        </div>
 
     <!-- Main Layout with Editor and Preview -->
     <div class="main-layout">
@@ -56,7 +66,8 @@
         <h2>Resume Preview</h2>
         <div class="A4">
           <div class="sheet padding-10mm">
-            <LeftRightPreview :resume="resume" />
+            <!-- <LitePreview :resume="resume" /> -->
+            <component :is="selectedPreviewComponent" :resume="resume" />
           </div>
         </div>
       </div>
@@ -71,6 +82,8 @@ import EducationEditor from './components/EducationEditor.vue';
 import SkillsEditor from './components/SkillsEditor.vue';
 import OtherSectionsEditor from './components/OtherSectionsEditor.vue';
 import ResumeReview from './components/ResumeReview.vue';
+import LitePreview from './components/LitePreview.vue';
+import NicePreview from './components/NicePreview.vue';
 import LeftRightPreview from './components/LeftRightPreview.vue';
 import { resumeData } from './data';
 
@@ -82,13 +95,31 @@ export default {
     OtherSectionsEditor,
     SkillsEditor,
     ResumeReview,
+    LitePreview,
+    NicePreview,
     LeftRightPreview
   },
   data() {
     return {
       activeTab: 'editor',
-      resume: JSON.parse(localStorage.getItem('resume')) || resumeData
+      resume: JSON.parse(localStorage.getItem('resume')) || resumeData,
+      selectedPreviewLayout: 'lite',  // Default preview layout
     };
+  },
+  computed: {
+    selectedPreviewComponent() {
+      switch (this.selectedPreviewLayout) {
+        case 'nice':
+          return NicePreview;
+        case 'left-right':
+          return LeftRightPreview;
+        case 'lite':
+          return LitePreview;
+        case 'resume':
+        default:
+          return ResumeReview;
+      }
+    }
   },
   methods: {
 
