@@ -2,7 +2,7 @@
     <div>
       <h3>Other Sections</h3>
       <div v-for="(section, sectionIndex) in sections" :key="sectionIndex" class="other-section">
-        <h4>{{ section.title }}</h4>
+        <input v-model="section.title" placeholder="Category Title" />
 
         <!-- Items in the Section -->
         <div v-for="(item, itemIndex) in section.items" :key="itemIndex" class="other-item">

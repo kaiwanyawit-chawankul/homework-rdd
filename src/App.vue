@@ -10,10 +10,16 @@
       <button @click="printResume">Print Resume</button>
     </div>
 
+    <!-- Tabs for Switching Between Editor and Preview -->
+    <div class="tabs">
+      <button @click="activeTab = 'editor'" :class="{ active: activeTab === 'editor' }">Editor</button>
+      <button @click="activeTab = 'preview'" :class="{ active: activeTab === 'preview' }">Preview</button>
+    </div>
+
     <!-- Main Layout with Editor and Preview -->
     <div class="main-layout">
-      <!-- Left Side: Editor -->
-      <div class="editor">
+      <!-- Left Side: Editor (Visible when activeTab is 'editor') -->
+      <div class="editor" v-if="activeTab === 'editor'">
         <h2>Resume Form</h2>
         <form @submit.prevent="saveData">
           <div>
@@ -45,10 +51,14 @@
         </form>
       </div>
 
-      <!-- Right Side: Preview -->
-      <div class="preview">
+      <!-- Right Side: Preview (Visible when activeTab is 'preview') -->
+      <div class="preview" v-if="activeTab === 'preview'">
         <h2>Resume Preview</h2>
-        <LeftRightPreview :resume="resume" />
+        <div class="A4">
+          <div class="sheet padding-10mm">
+            <LeftRightPreview :resume="resume" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -76,6 +86,7 @@ export default {
   },
   data() {
     return {
+      activeTab: 'editor',
       resume: JSON.parse(localStorage.getItem('resume')) || resumeData
     };
   },
@@ -105,32 +116,15 @@ export default {
       const printWindow = window.open('', '', 'width=800,height=600');
 
       // Get the HTML content of the preview section
-      const previewHTML = document.querySelector('.preview').innerHTML;
-
-      // Style for printing
-      const printStyles = `
-        <style>
-          body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-          }
-          h1, h2, h3, h4 {
-            color: #333;
-          }
-          .preview {
-            max-width: 800px;
-            margin: 0 auto;
-          }
-          /* Add any other print styles here */
-        </style>
-      `;
+      const previewHTML = document.querySelector('.A4').innerHTML;
 
       // Write HTML to the print window
       printWindow.document.write(`
         <html>
           <head>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
+            <style>@page { size: A4 }</style>
             <title>Resume</title>
-            ${printStyles}
           </head>
           <body>
             ${previewHTML}
@@ -187,7 +181,7 @@ export default {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  max-width: 700px;
+  max-width: 900px;
   overflow-y: auto;
 }
 
@@ -198,7 +192,7 @@ export default {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  max-width: 700px;
+  max-width: 900px;
   overflow-y: auto;
 }
 
