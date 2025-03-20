@@ -143,29 +143,56 @@ export default {
       reader.readAsText(file);
     },
     printResume() {
-      const printWindow = window.open('', '', 'width=800,height=600');
+  const printWindow = window.open('', '', 'width=800,height=600');
 
-      // Get the HTML content of the preview section
-      const previewHTML = document.querySelector('.A4').innerHTML;
+  // Get the HTML content of the preview section
+  const previewHTML = document.querySelector('.A4').innerHTML;
 
-      // Write HTML to the print window
-      printWindow.document.write(`
-        <html>
-          <head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
-            <style>@page { size: A4 }</style>
-            <title>Resume</title>
-          </head>
-          <body>
-            ${previewHTML}
-          </body>
-        </html>
-      `);
+  // Get the global styles from the page and inject them
+  const styles = Array.from(document.styleSheets)
+    .map(sheet => {
+      try {
+        return Array.from(sheet.cssRules)
+          .map(rule => rule.cssText)
+          .join('');
+      } catch (e) {
+        // Handle cross-origin stylesheets
+        return '';
+      }
+    })
+    .join('');
 
-      // Close the document and print
-      printWindow.document.close();
-      printWindow.print();
-    }
+  // Write the content and styles into the print window
+  printWindow.document.write(`
+    <html>
+      <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
+        <style>@page { size: A4 }</style>
+        <style>
+          /* Injecting app's styles */
+          ${styles}
+
+            /* Additional styles for better print layout */
+            .top-buttons, .tabs, .main-layout {
+              display: none; /* Hide non-essential elements during print */
+            }
+          }
+        </style>
+        <title>Resume</title>
+      </head>
+      <body>
+        <div class="A4">
+          ${previewHTML}
+        </div>
+      </body>
+    </html>
+  `);
+
+  // Close the document and trigger the print dialog
+  printWindow.document.close();
+  printWindow.print();
+}
+
   }
 };
 </script>
@@ -266,4 +293,5 @@ button[type="submit"] {
 button:hover {
   opacity: 0.9;
 }
+
 </style>
