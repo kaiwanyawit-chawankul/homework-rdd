@@ -196,7 +196,24 @@ export default {
   }
 };
 </script>
+<style>
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
+textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #4caf50 #f9f9f9; /* Customize scrollbar color */
+}
+</style>
 <style scoped>
 /* Global styles */
 #app {
@@ -255,23 +272,6 @@ export default {
 
 h2, h3, h4 {
   margin-bottom: 10px;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-textarea {
-    width: 100%;
-    min-height: 120px;
-    resize: vertical;
-    overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #4caf50 #f9f9f9; /* Customize scrollbar color */
 }
 
 button {
