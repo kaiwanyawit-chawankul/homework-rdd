@@ -66,7 +66,6 @@
         <h2>Resume Preview</h2>
         <div class="A4">
           <div class="sheet padding-10mm">
-            <!-- <LitePreview :resume="resume" /> -->
             <component :is="selectedPreviewComponent" :resume="resume" />
           </div>
         </div>
@@ -237,6 +236,15 @@ input, textarea {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #4caf50 #f9f9f9; /* Customize scrollbar color */
 }
 
 button {

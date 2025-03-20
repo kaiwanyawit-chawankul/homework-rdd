@@ -46,17 +46,18 @@
       <div class="experience">
         <h3>Work history</h3>
         <div v-for="(experience, index) in resume.experiences" :key="index" class="experience-item">
-          <div class="duration-box">
+          <div class="experience-header">
+            <div><strong>{{ experience.title }}</strong>
+              <p>{{ experience.company }}</p>
+            </div>
+
             <p>{{ formatYearMonth(experience.startDate) }} - {{ formatYearMonth(experience.endDate) }}</p>
           </div>
-          <div class="details">
-            <p><strong>{{ experience.title }}</strong></p>
-            <p>{{ experience.company }}</p>
+          <div>
             <ul>
               <li v-for="(task, taskIndex) in experience.tasks" :key="taskIndex">{{ task }}</li>
             </ul>
           </div>
-
         </div>
       </div>
 
@@ -126,6 +127,7 @@ h3,h4 {
   padding-bottom: 5px; /* Optional: add some space below the text */
   margin-top: 10px; /* Optional: add some space above the top border */
   margin-bottom: 10px; /* Optional: add some space below the bottom border */
+  font-weight: bold;
 }
 
 .left-right-preview {
@@ -148,8 +150,8 @@ h3,h4 {
 }
 
 .right-side {
-  width: 65%;
-  padding: 0px 20px 20px 20px;
+  width: 68%;
+  padding: 0px 0px 0px 0px;
   display: flex;
   /* Add flex display */
   flex-direction: column;
@@ -208,13 +210,24 @@ h3,h4 {
 }
 
 .education {
-  margin: 20px 0;
   width: 100%;
 }
 
 .experience {
   margin: 20px 0;
   width: 100%;
+}
+
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 1px dotted black;
 }
 
 .education-item {
@@ -225,10 +238,15 @@ h3,h4 {
 }
 
 .experience-item {
-  display: flex;
-  align-items: flex-start;
+  /* display: flex; */
+  /* align-items: flex-start; */
   /* Align items to the top */
   margin-bottom: 15px;
+}
+
+.experience-item li {
+  list-style-type: disc;
+  margin-left: 15px;
 }
 
 .duration-box {
@@ -253,7 +271,6 @@ h3,h4 {
 }
 
 .others {
-  margin: 20px 0;
   width: 100%;
 }
 
