@@ -3,9 +3,11 @@
     <!-- Header: Name and Contact Information -->
     <section class="header">
       <h1>{{ resume.contact.name }}</h1>
-      <p>Email: <a :href="'mailto:' + resume.contact.email">{{ resume.contact.email }}</a></p>
-      <p>Mobile: <a :href="'tel:' + resume.contact.mobile">{{ resume.contact.mobile }}</a></p>
-      <p>Location: {{ resume.contact.address }}</p>
+      <p>
+        <a :href="'mailto:' + resume.contact.email">{{ resume.contact.email }}</a> ·
+        <a :href="'tel:' + resume.contact.mobile">{{ resume.contact.mobile }}</a> ·
+        {{ resume.contact.address }}
+      </p>
     </section>
 
     <!-- Summary Section -->
@@ -43,7 +45,8 @@
       <h2>Education</h2>
       <div v-for="(education, index) in resume.educations" :key="index" class="education-item">
         <ul>
-          <li>{{ education.degree }} from {{ education.school }} · {{ formatYear(education.startDate) }} - {{ formatYear(education.endDate) }}</li>
+          <li>{{ education.degree }} from {{ education.school }} · {{ formatYear(education.startDate) }} - {{
+            formatYear(education.endDate) }}</li>
         </ul>
       </div>
     </section>
@@ -130,14 +133,14 @@ ul li {
   margin: 5px 0;
 }
 
-.certification-item li{
+.certification-item li {
   list-style-type: disc;
   padding-left: 10px;
   margin-left: 20px;
   text-align: left;
 }
 
-.education-item li{
+.education-item li {
   list-style-type: disc;
   padding-left: 10px;
   margin-left: 20px;
@@ -149,7 +152,7 @@ ul li {
   flex-direction: column;
 }
 
-.experience-item li{
+.experience-item li {
   list-style-type: disc;
   padding-left: 10px;
   margin-left: 20px;
@@ -168,7 +171,8 @@ ul li {
   border-bottom: 1px dotted black;
 }
 
-.experience-header h3,p {
+.experience-header h3,
+p {
   padding-top: 0;
   margin-top: 0;
   padding-bottom: 0;
