@@ -1,4 +1,3 @@
-
 <!-- src/App.vue -->
 
 <template>
@@ -12,19 +11,30 @@
 
     <!-- Tabs for Switching Between Editor and Preview -->
     <div class="tabs">
+      <select v-model="selectedResume" @change="loadResume">
+        <option v-for="(resumeKey, index) in resumeList" :key="index" :value="resumeKey">
+          {{ resumeKey }}
+        </option>
+      </select>
       <button @click="activeTab = 'editor'" :class="{ active: activeTab === 'editor' }">Editor</button>
       <button @click="activeTab = 'preview'" :class="{ active: activeTab === 'preview' }">Preview</button>
+
+      <!-- New Buttons for Add and Delete Resume -->
+      <button @click="addNewResume">Add New Resume</button>
+      <button @click="cloneResume">Clone Resume</button>
+      <button v-if="resumeList.length > 0" @click="deleteResume">Delete Resume</button>
     </div>
-          <!-- Preview Layout Selector -->
-          <div class="preview-layout-selector">
-          <label for="previewLayout">Choose Preview Layout:</label>
-          <select v-model="selectedPreviewLayout">
-            <option value="lite">Lite Preview</option>
-            <option value="nice">Nice Preview</option>
-            <option value="left-right">Left-Right Preview</option>
-            <option value="resume">Resume Preview</option>
-          </select>
-        </div>
+
+    <!-- Preview Layout Selector -->
+    <div class="preview-layout-selector">
+      <label for="previewLayout">Choose Preview Layout:</label>
+      <select v-model="selectedPreviewLayout">
+        <option value="lite">Lite Preview</option>
+        <option value="nice">Nice Preview</option>
+        <option value="left-right">Left-Right Preview</option>
+        <option value="resume">Resume Preview</option>
+      </select>
+    </div>
 
     <!-- Main Layout with Editor and Preview -->
     <div class="main-layout">
@@ -102,7 +112,9 @@ export default {
     return {
       activeTab: 'editor',
       resume: JSON.parse(localStorage.getItem('resume')) || resumeData,
+      resumeList: JSON.parse(localStorage.getItem('resume-list')) || [],
       selectedPreviewLayout: 'lite',  // Default preview layout
+      selectedResume: 'resume',  // Default preview layout
     };
   },
   computed: {
@@ -121,10 +133,14 @@ export default {
     }
   },
   methods: {
-
     saveData() {
-      localStorage.setItem('resume', JSON.stringify(this.resume));
+      if (!this.resumeList.includes(this.selectedResume)) {
+        this.resumeList.push(this.selectedResume);
+      }
+      localStorage.setItem(this.selectedResume, JSON.stringify(this.resume));
+      localStorage.setItem('resume-list', JSON.stringify(this.resumeList));
     },
+
     exportData() {
       const blob = new Blob([JSON.stringify(this.resume)], { type: 'application/json' });
       const link = document.createElement('a');
@@ -132,6 +148,7 @@ export default {
       link.download = 'resume.json';
       link.click();
     },
+
     importData(event) {
       const file = event.target.files[0];
       const reader = new FileReader();
@@ -142,62 +159,110 @@ export default {
       };
       reader.readAsText(file);
     },
+
     printResume() {
-  const printWindow = window.open('', '', 'width=800,height=600');
-
-  // Get the HTML content of the preview section
-  const previewHTML = document.querySelector('.A4').innerHTML;
-
-  // Get the global styles from the page and inject them
-  const styles = Array.from(document.styleSheets)
-    .map(sheet => {
-      try {
-        return Array.from(sheet.cssRules)
-          .map(rule => rule.cssText)
-          .join('');
-      } catch (e) {
-        // Handle cross-origin stylesheets
-        return '';
-      }
-    })
-    .join('');
-
-  // Write the content and styles into the print window
-  printWindow.document.write(`
-    <html>
-      <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
-        <style>@page { size: A4 }</style>
-        <style>
-          /* Injecting app's styles */
-          ${styles}
-
-            /* Additional styles for better print layout */
-            .top-buttons, .tabs, .main-layout {
-              display: none; /* Hide non-essential elements during print */
-            }
+      const printWindow = window.open('', '', 'width=800,height=600');
+      const previewHTML = document.querySelector('.A4').innerHTML;
+      const styles = Array.from(document.styleSheets)
+        .map(sheet => {
+          try {
+            return Array.from(sheet.cssRules)
+              .map(rule => rule.cssText)
+              .join('');
+          } catch (e) {
+            return '';
           }
-        </style>
-        <title>Resume</title>
-      </head>
-      <body>
-        <div class="A4">
-          ${previewHTML}
-        </div>
-      </body>
-    </html>
-  `);
+        })
+        .join('');
+      printWindow.document.write(`
+      <html>
+        <head>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
+          <style>@page { size: A4 }</style>
+          <style>
+            ${styles}
+            .top-buttons, .tabs, .main-layout { display: none; }
+          </style>
+          <title>Resume</title>
+        </head>
+        <body>
+          <div class="A4">
+            ${previewHTML}
+          </div>
+        </body>
+      </html>
+    `);
+      printWindow.document.close();
+      printWindow.print();
+    },
 
-  // Close the document and trigger the print dialog
-  printWindow.document.close();
-  printWindow.print();
-}
+    loadResume() {
+      // Load the selected resume from the list
+      this.resume = JSON.parse(localStorage.getItem(this.selectedResume));
+    },
 
+    addNewResume() {
+      // Prompt user to add a new resume name
+      const newResumeName = prompt('Enter a new resume title:');
+      if (newResumeName) {
+        // Add new resume to the list and make it the active resume
+        this.selectedResume = newResumeName;
+        this.resume = {
+          title: '',
+          description: '',
+          contact: {},
+          experiences: [],
+          educations: [],
+          skills: [],
+          others: []
+        };
+        // Save it in localStorage
+        this.resumeList.push(newResumeName);
+        localStorage.setItem('resume-list', JSON.stringify(this.resumeList));
+        localStorage.setItem(newResumeName, JSON.stringify(this.resume));
+      }
+    },
+
+    deleteResume() {
+      // Confirm before deleting
+      if (confirm(`Are you sure you want to delete the resume "${this.selectedResume}"?`)) {
+        const index = this.resumeList.indexOf(this.selectedResume);
+        if (index !== -1) {
+          // Remove resume from the list
+          this.resumeList.splice(index, 1);
+          localStorage.setItem('resume-list', JSON.stringify(this.resumeList));
+          // Remove resume from localStorage
+          localStorage.removeItem(this.selectedResume);
+          // Set default values or select another resume if needed
+          this.selectedResume = this.resumeList.length > 0 ? this.resumeList[0] : '';
+          this.resume = {};
+        }
+      }
+    },
+
+    cloneResume() {
+      // Clone the selected resume
+      const clonedResume = JSON.parse(JSON.stringify(this.resume));
+
+      // Prompt the user for a new title for the cloned resume
+      const newResumeName = prompt('Enter a name for the cloned resume:');
+      if (newResumeName) {
+        // Add the cloned resume to the list and save it in localStorage
+        this.resumeList.push(newResumeName);
+        localStorage.setItem('resume-list', JSON.stringify(this.resumeList));
+        localStorage.setItem(newResumeName, JSON.stringify(clonedResume));
+
+        // Switch to the newly cloned resume
+        this.selectedResume = newResumeName;
+        this.resume = clonedResume;
+      }
+    }
   }
 };
 </script>
 <style>
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
@@ -206,12 +271,13 @@ input, textarea {
 }
 
 textarea {
-    width: 100%;
-    min-height: 120px;
-    resize: vertical;
-    overflow-y: auto;
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #4caf50 #f9f9f9; /* Customize scrollbar color */
+  scrollbar-color: #4caf50 #f9f9f9;
+  /* Customize scrollbar color */
 }
 </style>
 <style scoped>
@@ -270,7 +336,9 @@ textarea {
   overflow-y: auto;
 }
 
-h2, h3, h4 {
+h2,
+h3,
+h4 {
   margin-bottom: 10px;
 }
 
@@ -293,5 +361,4 @@ button[type="submit"] {
 button:hover {
   opacity: 0.9;
 }
-
 </style>
