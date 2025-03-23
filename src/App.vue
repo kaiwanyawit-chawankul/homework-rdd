@@ -134,9 +134,13 @@ export default {
   },
   methods: {
     saveData() {
+      // Include the selectedPreviewLayout when saving the resume
+      this.resume.previewLayout = this.selectedPreviewLayout;
+
       if (!this.resumeList.includes(this.selectedResume)) {
         this.resumeList.push(this.selectedResume);
       }
+
       localStorage.setItem(this.selectedResume, JSON.stringify(this.resume));
       localStorage.setItem('resume-list', JSON.stringify(this.resumeList));
     },
@@ -199,6 +203,11 @@ export default {
     loadResume() {
       // Load the selected resume from the list
       this.resume = JSON.parse(localStorage.getItem(this.selectedResume));
+
+      // If the preview layout is saved in the resume data, load it
+      if (this.resume && this.resume.previewLayout) {
+        this.selectedPreviewLayout = this.resume.previewLayout;
+      }
     },
 
     addNewResume() {
@@ -214,7 +223,8 @@ export default {
           experiences: [],
           educations: [],
           skills: [],
-          others: []
+          others: [],
+          previewLayout: 'lite'  // Default preview layout
         };
         // Save it in localStorage
         this.resumeList.push(newResumeName);
