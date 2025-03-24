@@ -230,7 +230,7 @@ h3,h4 {
   padding-top: 0;
   margin-top: 0;
   padding-bottom: 0;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   border-bottom: 1px dotted black;
 }
 
@@ -398,7 +398,7 @@ h3,h4 {
   padding-top: 0;
   margin-top: 0;
   padding-bottom: 0;
-  margin-bottom: 0;
+  margin-bottom: 10px;
   border-bottom: 1px dotted black;
 }
 
