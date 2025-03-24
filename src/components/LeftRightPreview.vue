@@ -116,6 +116,7 @@ export default {
 </script>
 
 <style scoped>
+
 * {
   text-align: left;
 }
@@ -284,48 +285,168 @@ h3,h4 {
     background-color: white;
     color: black;
   }
+  * {
+  text-align: left;
+}
 
-  .left-right-preview {
-    display: block;
-    padding: 0;
-  }
+h3,h4 {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding-top: 5px; /* Optional: add some space above the text */
+  padding-bottom: 5px; /* Optional: add some space below the text */
+  margin-top: 10px; /* Optional: add some space above the top border */
+  margin-bottom: 10px; /* Optional: add some space below the bottom border */
+  font-weight: bold;
+}
 
-  .left-side,
-  .right-side {
-    width: 100%;
-    background-color: transparent;
-    color: black;
-    padding: 10px 0;
-  }
+.left-right-preview {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .left-side {
-    font-size: 12px;
-  }
+.left-side {
+  width: 30%;
+  background-color: #003366;
+  color: white;
+  padding: 20px;
+  font-size: 14px;
+  display: flex;
+  /* Add flex display */
+  flex-direction: column;
+  /* Stack children vertically */
+  align-items: flex-start;
+  /* Align items to the top */
+}
 
-  .left-side h2,
-  .left-side h3,
-  .left-side h4 {
-    font-size: 14px;
-  }
+.right-side {
+  width: 68%;
+  padding: 0px 0px 0px 0px;
+  display: flex;
+  /* Add flex display */
+  flex-direction: column;
+  /* Stack children vertically */
+  align-items: flex-start;
+  /* Align items to the top */
+}
 
-  .left-side ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
+.left-side h2,
+.left-side h3,
+.left-side h4 {
+  font-size: 16px;
+}
 
-  .right-side h3,
-  .right-side h4 {
-    font-size: 14px;
-  }
+.left-side ul {
+  list-style-type: none;
+  padding-left: 0;
+}
 
-  .right-side p,
-  .right-side ul {
-    font-size: 12px;
-  }
+.left-side li {
+  margin-bottom: 8px;
+}
 
-  .right-side ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
+.right-side h3,
+.right-side h4 {
+  font-size: 16px;
+}
+
+.right-side p,
+.right-side ul {
+  font-size: 14px;
+}
+
+.right-side ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.right-side li {
+  margin-bottom: 6px;
+}
+
+.progress-container {
+  width: 100%;
+  height: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: white;
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+.education {
+  width: 100%;
+}
+
+.experience {
+  margin: 20px 0;
+  width: 100%;
+}
+
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 1px dotted black;
+}
+
+.education-item {
+  display: flex;
+  align-items: flex-start;
+  /* Align items to the top */
+  margin-bottom: 15px;
+}
+
+.experience-item {
+  /* display: flex; */
+  /* align-items: flex-start; */
+  /* Align items to the top */
+  margin-bottom: 15px;
+}
+
+.experience-item li {
+  list-style-type: disc;
+  margin-left: 15px;
+}
+
+.duration-box {
+  width: 100px;
+  padding: 10px;
+  text-align: center;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.details p {
+  margin: 5px 0;
+}
+
+.details {
+  flex: 1;
+}
+
+.details ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.others {
+  width: 100%;
+}
+
+.others ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
 }
 </style>
