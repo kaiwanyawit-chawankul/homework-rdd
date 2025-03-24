@@ -209,7 +209,10 @@ h3,h4 {
   border-radius: 5px;
   transition: width 0.3s ease-in-out;
 }
-
+.portfolios li{
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
 .education {
   width: 100%;
 }
@@ -306,7 +309,7 @@ h3,h4 {
 
 .left-side {
   width: 30%;
-  background-color: #003366;
+  background-color: #0375e7;
   color: white;
   padding: 20px;
   font-size: 14px;
