@@ -64,11 +64,18 @@
     <!-- Technical Proficiencies Section -->
     <section class="technical-proficiencies">
       <h2>Technical Proficiencies</h2>
-      <ul>
-        <li v-for="(tech, index) in resume.skills[1].items" :key="index">
-          {{ tech.name }}: {{ tech.rating }}
-        </li>
-      </ul>
+      <table>
+        <tbody>
+          <tr v-show="false">
+            <th>Language</th>
+            <th>Rating</th>
+          </tr>
+          <tr v-for="(tech, index) in resume.skills[1].items" :key="index">
+            <td>{{ tech.name }}</td>
+            <td>{{ tech.rating }}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </div>
 </template>
