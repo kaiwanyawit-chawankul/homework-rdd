@@ -7,9 +7,10 @@
 
         <!-- Skill Items within a Category -->
         <div v-for="(skill, skillIndex) in skillCategory.items" :key="skillIndex" class="skill-item">
-          <input v-model="skill.name" placeholder="Skill Name" />
+          <textarea v-model="skill.name" placeholder="Skill Name"></textarea>
           <input v-model="skill.rating" placeholder="Skill Rating" />
           <button type="button" @click="removeSkill(categoryIndex, skillIndex)">Remove Skill</button>
+          <button v-if="skillIndex ==0" type="button" @click="splitSkill(skillCategory)">Split Skills</button>
         </div>
 
         <!-- Add Skill Button -->
@@ -57,7 +58,14 @@
       // Remove a Skill from a specific Skill Category
       removeSkill(categoryIndex, skillIndex) {
         this.skills[categoryIndex].items.splice(skillIndex, 1);
-      }
+      },
+
+      splitSkill(skillCategory) {
+        //split multiple tasks into separate tasks
+        const skills = skillCategory.items[0].name.split("\n");
+        const skillItems = skills.map(skill => ({ name: skill, rating: "" }));
+        skillCategory.items.splice(0, 1, ...skillItems);
+      },
     }
   };
   </script>
