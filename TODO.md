@@ -6,5 +6,5 @@
 [] add ko-fi
 [x] SEO tag
 [x] add lighthouse
-[] add dependabot
+[x] add dependabot
 [x] fix csp
