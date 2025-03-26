@@ -5,3 +5,5 @@
 [] split skills
 [] add ko-fi
 [] SEO tag
+[] add lighthouse
+[] add dependabot
