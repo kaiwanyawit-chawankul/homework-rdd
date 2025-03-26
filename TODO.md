@@ -3,3 +3,5 @@
 [] Fix print preview
 [] Fix nice template
 [] split skills
+[] add ko-fi
+[] SEO tag
