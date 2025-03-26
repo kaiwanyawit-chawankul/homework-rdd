@@ -2,8 +2,9 @@
 [] Collapsible editor section
 [] Fix print preview
 [] Fix nice template
-[] split skills
+[x] split skills
 [] add ko-fi
-[] SEO tag
+[x] SEO tag
 [x] add lighthouse
 [] add dependabot
+[x] fix csp
