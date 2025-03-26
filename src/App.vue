@@ -5,13 +5,13 @@
     <!-- Buttons on Top -->
     <div class="top-buttons">
       <button @click="exportData">Export Data</button>
-      <input type="file" @change="importData" />
+      <input type="file" @change="importData" aria-label="Import Data" />
       <button @click="printResume">Print Resume</button>
     </div>
 
     <!-- Tabs for Switching Between Editor and Preview -->
     <div class="tabs">
-      <select v-model="selectedResume" @change="loadResume">
+      <select v-model="selectedResume" @change="loadResume" aria-label="Choose Resume">
         <option v-for="(resumeKey, index) in resumeList" :key="index" :value="resumeKey">
           {{ resumeKey }}
         </option>
@@ -28,7 +28,7 @@
     <!-- Preview Layout Selector -->
     <div class="preview-layout-selector">
       <label for="previewLayout">Choose Preview Layout:</label>
-      <select v-model="selectedPreviewLayout">
+      <select v-model="selectedPreviewLayout" aria-label="Choose Preview Layout">
         <option value="lite">Lite Preview</option>
         <option value="nice">Nice Preview</option>
         <option value="left-right">Left-Right Preview</option>
