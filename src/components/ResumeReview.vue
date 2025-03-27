@@ -7,13 +7,13 @@ defineProps({
 </script>
 
 <template>
-  <div class="resume-preview" v-if="resume.title">
+  <div class="resume-preview">
         <h3>{{ resume.title }}</h3>
         <p>{{ resume.description }}</p>
         <h4>Contact</h4>
-        <p>{{ resume.contact.name }}</p>
-        <p>{{ resume.contact.mobile }}</p>
-        <p>{{ resume.contact.email }}</p>
+        <p>{{ resume.contact?.name }}</p>
+        <p>{{ resume.contact?.mobile }}</p>
+        <p>{{ resume.contact?.email }}</p>
 
         <h4>Experience</h4>
         <ul>

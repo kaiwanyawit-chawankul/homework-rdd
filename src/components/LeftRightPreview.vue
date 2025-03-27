@@ -13,7 +13,7 @@
         <p><strong>Email:</strong> {{ resume.contact.email }}</p>
       </div>
 
-      <div class="portfolios">
+      <div class="portfolios" v-if="resume.others[2]">
         <h3>Portfolios</h3>
         <ul>
           <li v-for="(portfolio, index) in resume.others[2].items" :key="index">{{ portfolio }}</li>

@@ -17,7 +17,7 @@
     </section>
 
     <!-- Core Competencies Section -->
-    <section class="core-competencies">
+    <section class="core-competencies" v-if="resume.skills[0]">
       <h2>Core Competencies</h2>
       <ul>
         <li v-for="(competency, index) in resume.skills[0].items" :key="index">
@@ -52,7 +52,7 @@
     </section>
 
     <!-- Certifications Section -->
-    <section class="certifications">
+    <section class="certifications" v-if="resume.others[0]">
       <h2>Certifications</h2>
       <div v-for="(certification, index) in resume.others[0].items" :key="index" class="certification-item">
         <ul>
@@ -62,7 +62,7 @@
     </section>
 
     <!-- Technical Proficiencies Section -->
-    <section class="technical-proficiencies">
+    <section class="technical-proficiencies" v-if="resume.skills[1]">
       <h2>Technical Proficiencies</h2>
       <table>
         <tbody>

@@ -36,13 +36,17 @@
       </select>
     </div>
 
+
     <!-- Main Layout with Editor and Preview -->
     <div class="main-layout">
+      <div class="side-bar">
+        <TOC :sections="sections" @toggle-section="toggleSection" />
+      </div>
       <!-- Left Side: Editor (Visible when activeTab is 'editor') -->
       <div class="editor" v-if="activeTab === 'editor'">
         <h2>Resume Form</h2>
         <form @submit.prevent="saveData">
-          <TOC :sections="sections" @toggle-section="toggleSection" />
+
 
           <CollapsibleSection :id="sections[0].id" :title="sections[0].title" :isOpen="sections[0].isOpen" @toggle="toggleSection">
             <!-- Info Editor Component-->
@@ -122,7 +126,7 @@ export default {
   },
   data() {
     return {
-      activeTab: 'editor',
+      activeTab: 'preview',
       resume: JSON.parse(localStorage.getItem('resume')) || resumeData,
       resumeList: JSON.parse(localStorage.getItem('resume-list')) || [],
       selectedPreviewLayout: 'lite',  // Default preview layout
@@ -222,6 +226,7 @@ export default {
     },
 
     printResume() {
+      this.activeTab = 'preview';
       const printWindow = window.open('', '', 'width=800,height=600');
       const previewHTML = document.querySelector('.A4').innerHTML;
       const styles = Array.from(document.styleSheets)
