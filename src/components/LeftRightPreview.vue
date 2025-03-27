@@ -15,7 +15,7 @@
         <p><strong>Email:</strong> {{ resume.contact.email }}</p>
       </div>
 
-      <div class="portfolios" v-if="resume.others[2]">
+      <div class="portfolios" v-if="resume.others && resume.others[2]">
         <h3>Portfolios</h3>
         <ul>
           <li v-for="(portfolio, index) in resume.others[2].items" :key="index">
@@ -111,7 +111,7 @@
         </div>
       </div>
 
-      <div class="others">
+      <div class="others" v-if="resume.others">
         <div
           v-for="(otherSection, sectionIndex) in resume.others.slice(0, 2)"
           :key="sectionIndex"
