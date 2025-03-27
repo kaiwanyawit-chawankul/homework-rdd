@@ -1,7 +1,7 @@
 <template>
   <div class="resume">
     <!-- Header: Name and Contact Information -->
-    <section class="header">
+    <section class="header" v-if="resume.contact">
       <h1>{{ resume.contact.name }}</h1>
       <p>
         <a :href="'mailto:' + resume.contact.email">{{

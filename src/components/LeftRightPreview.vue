@@ -4,7 +4,7 @@
   <div class="left-right-preview">
     <!-- Left Side -->
     <div class="left-side">
-      <div class="contact-info">
+      <div class="contact-info" v-if="resume.contact">
         <h2>{{ resume.contact.name }}</h2>
         <p>
           <strong>{{ resume.title }}</strong>
