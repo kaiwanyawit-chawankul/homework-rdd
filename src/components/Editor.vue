@@ -1,0 +1,59 @@
+<template>
+    <div class="editor-container">
+      <h2>Edit Resume</h2>
+      <div class="editor-navigation">
+        <!-- Links to Navigate to Different Editors -->
+        <router-link to="/editor/info" class="editor-link">Info</router-link>
+        <router-link to="/editor/contact" class="editor-link">Contact</router-link>
+        <router-link to="/editor/experience" class="editor-link">Experience</router-link>
+        <router-link to="/editor/education" class="editor-link">Education</router-link>
+        <router-link to="/editor/skills" class="editor-link">Skills</router-link>
+        <router-link to="/editor/other-sections" class="editor-link">Other Sections</router-link>
+      </div>
+
+      <div class="editor-content">
+        <!-- Dynamic content based on the route -->
+        <router-view></router-view>
+      </div>
+    </div>
+  </template>
+
+  <script>
+  export default {
+    name: 'Editor',
+    data() {
+      return {
+        // You can add any data related to editor functionality here
+      };
+    },
+  };
+  </script>
+
+  <style scoped>
+  .editor-container {
+    padding: 20px;
+  }
+
+  .editor-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .editor-link {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .editor-link:hover {
+    background-color: #2980b9;
+  }
+
+  .editor-content {
+    margin-top: 20px;
+  }
+  </style>
