@@ -28,7 +28,7 @@
       <button v-if="resumeList.length > 0" @click="deleteResume">
         Delete Resume
       </button>
-      <button @click="saveData">Save Resume</button>
+
     </div>
 
     <!-- Preview Layout Selector -->
@@ -52,6 +52,7 @@
         <form @submit.prevent="saveData">
           <router-view :resume="resume"></router-view>
           <!-- This will display the editor components based on the route -->
+          <button @click="saveData">Save Resume</button>
         </form>
       </div>
 
