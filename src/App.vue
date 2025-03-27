@@ -42,31 +42,47 @@
       <div class="editor" v-if="activeTab === 'editor'">
         <h2>Resume Form</h2>
         <form @submit.prevent="saveData">
-          <div>
-            <label for="title">Title</label>
-            <input v-model="resume.title" placeholder="Your title">
-          </div>
+          <TOC :sections="sections" @toggle-section="toggleSection" />
 
-          <div>
-            <label for="description">Description</label>
-            <textarea v-model="resume.description" placeholder="Brief description"></textarea>
-          </div>
+          <!-- <div v-for="section in sections" :key="section.id">
+        <CollapsibleSection
+          :id="section.id"
+          :isOpen="section.isOpen"
+          @toggle="toggleSection"
+        >
+          <p>{{ section.content }}</p>
+        </CollapsibleSection>
+      </div> -->
 
-          <!-- Contact Editor Component -->
-          <ContactEditor :contact="resume.contact" />
+          <CollapsibleSection :id="sections[0].id" :isOpen="sections[0].isOpen" @toggle="toggleSection">
+            <!-- Info Editor Component-->
+            <InfoEditor :info="resume" />
+          </CollapsibleSection>
 
-          <!-- Experience Editor Component -->
-          <ExperienceEditor :experiences="resume.experiences" />
+          <CollapsibleSection :id="sections[1].id" :isOpen="sections[1].isOpen" @toggle="toggleSection">
+            <!-- Contact Editor Component -->
+            <ContactEditor :contact="resume.contact" />
+          </CollapsibleSection>
 
-          <!-- Education Editor Component -->
-          <EducationEditor :educations="resume.educations" />
+          <CollapsibleSection :id="sections[2].id" :isOpen="sections[2].isOpen" @toggle="toggleSection">
+            <!-- Experience Editor Component -->
+            <ExperienceEditor :experiences="resume.experiences" />
+          </CollapsibleSection>
 
-          <!-- Skills Editor Component -->
-          <SkillsEditor :skills="resume.skills" />
+          <CollapsibleSection :id="sections[3].id" :isOpen="sections[3].isOpen" @toggle="toggleSection">
+            <!-- Education Editor Component -->
+            <EducationEditor :educations="resume.educations" />
+          </CollapsibleSection>
 
-          <!-- Other Sections Editor Component -->
-          <OtherSectionsEditor :sections="resume.others" />
+          <CollapsibleSection :id="sections[4].id" :isOpen="sections[4].isOpen" @toggle="toggleSection">
+            <!-- Skills Editor Component -->
+            <SkillsEditor :skills="resume.skills" />
+          </CollapsibleSection>
 
+          <CollapsibleSection :id="sections[5].id" :isOpen="sections[5].isOpen" @toggle="toggleSection">
+            <!-- Other Sections Editor Component -->
+            <OtherSectionsEditor :sections="resume.others" />
+          </CollapsibleSection>
           <button type="submit">Save Data</button>
         </form>
       </div>
@@ -95,9 +111,15 @@ import LitePreview from './components/LitePreview.vue';
 import NicePreview from './components/NicePreview.vue';
 import LeftRightPreview from './components/LeftRightPreview.vue';
 import { resumeData } from './data';
+import InfoEditor from './components/InfoEditor.vue';
+import CollapsibleSection from './components/CollapsibleSection.vue';
+import TOC from './components/TOC.vue';
 
 export default {
   components: {
+    CollapsibleSection,
+    TOC,
+    InfoEditor,
     ContactEditor,
     ExperienceEditor,
     EducationEditor,
@@ -115,6 +137,44 @@ export default {
       resumeList: JSON.parse(localStorage.getItem('resume-list')) || [],
       selectedPreviewLayout: 'lite',  // Default preview layout
       selectedResume: 'resume',  // Default preview layout
+      sections: [
+        {
+          id: 'info-section',
+          title: 'info',
+          isOpen: true,
+          content: 'This is the content of Section 1.',
+        },
+        {
+          id: 'contact-section',
+          title: 'contact',
+          isOpen: false,
+          content: 'This is the content of Section 2.',
+        },
+        {
+          id: 'experiences-section',
+          title: 'experiences',
+          isOpen: false,
+          content: 'This is the content of Section 3.',
+        },
+        {
+          id: 'educations-section',
+          title: 'educations',
+          isOpen: false,
+          content: 'This is the content of Section 3.',
+        },
+        {
+          id: 'skills-section',
+          title: 'skills',
+          isOpen: false,
+          content: 'This is the content of Section 3.',
+        },
+        {
+          id: 'others-section',
+          title: 'others',
+          isOpen: false,
+          content: 'This is the content of Section 3.',
+        },
+      ],
     };
   },
   computed: {
@@ -162,6 +222,13 @@ export default {
         localStorage.setItem('resume', JSON.stringify(data));
       };
       reader.readAsText(file);
+    },
+
+    toggleSection(id) {
+      const section = this.sections.find((section) => section.id === id);
+      if (section) {
+        section.isOpen = !section.isOpen;
+      }
     },
 
     printResume() {
