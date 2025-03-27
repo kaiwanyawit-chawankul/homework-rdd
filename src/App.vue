@@ -134,7 +134,7 @@ export default {
       sections: [
         {
           id: 'info-section',
-          title: '',
+          title: 'Application Info',
           isOpen: true,
           content: 'This is the content of Section 1.',
         },
