@@ -11,29 +11,15 @@
 
     <!-- Tabs for Switching Between Editor and Preview -->
     <div class="tabs">
-      <select
-        v-model="selectedResume"
-        @change="loadResume"
-        aria-label="Choose Resume"
-      >
-        <option
-          v-for="(resumeKey, index) in resumeList"
-          :key="index"
-          :value="resumeKey"
-        >
+      <select v-model="selectedResume" @change="loadResume" aria-label="Choose Resume">
+        <option v-for="(resumeKey, index) in resumeList" :key="index" :value="resumeKey">
           {{ resumeKey }}
         </option>
       </select>
-      <button
-        @click="activeTab = 'editor'"
-        :class="{ active: activeTab === 'editor' }"
-      >
+      <button @click="activeTab = 'editor'" :class="{ active: activeTab === 'editor' }">
         Editor
       </button>
-      <button
-        @click="activeTab = 'preview'"
-        :class="{ active: activeTab === 'preview' }"
-      >
+      <button @click="activeTab = 'preview'" :class="{ active: activeTab === 'preview' }">
         Preview
       </button>
 
@@ -48,10 +34,7 @@
     <!-- Preview Layout Selector -->
     <div class="preview-layout-selector">
       <label for="previewLayout">Choose Preview Layout:</label>
-      <select
-        v-model="selectedPreviewLayout"
-        aria-label="Choose Preview Layout"
-      >
+      <select v-model="selectedPreviewLayout" aria-label="Choose Preview Layout">
         <option value="lite">Lite Preview</option>
         <option value="nice">Nice Preview</option>
         <option value="left-right">Left-Right Preview</option>
@@ -68,62 +51,38 @@
       <div class="editor" v-if="activeTab === 'editor'">
         <h2>Resume Form</h2>
         <form @submit.prevent="saveData">
-          <CollapsibleSection
-            :id="sections[0].id"
-            :title="sections[0].title"
-            :isOpen="sections[0].isOpen"
-            @toggle="toggleSection"
-          >
+          <CollapsibleSection :id="sections[0].id" :title="sections[0].title" :isOpen="sections[0].isOpen"
+            @toggle="toggleSection">
             <!-- Info Editor Component-->
             <InfoEditor :info="resume" />
           </CollapsibleSection>
 
-          <CollapsibleSection
-            :id="sections[1].id"
-            :title="sections[1].title"
-            :isOpen="sections[1].isOpen"
-            @toggle="toggleSection"
-          >
+          <CollapsibleSection :id="sections[1].id" :title="sections[1].title" :isOpen="sections[1].isOpen"
+            @toggle="toggleSection">
             <!-- Contact Editor Component -->
             <ContactEditor :contact="resume.contact" />
           </CollapsibleSection>
 
-          <CollapsibleSection
-            :id="sections[2].id"
-            :title="sections[2].title"
-            :isOpen="sections[2].isOpen"
-            @toggle="toggleSection"
-          >
+          <CollapsibleSection :id="sections[2].id" :title="sections[2].title" :isOpen="sections[2].isOpen"
+            @toggle="toggleSection">
             <!-- Experience Editor Component -->
             <ExperienceEditor :experiences="resume.experiences" />
           </CollapsibleSection>
 
-          <CollapsibleSection
-            :id="sections[3].id"
-            :title="sections[3].title"
-            :isOpen="sections[3].isOpen"
-            @toggle="toggleSection"
-          >
+          <CollapsibleSection :id="sections[3].id" :title="sections[3].title" :isOpen="sections[3].isOpen"
+            @toggle="toggleSection">
             <!-- Education Editor Component -->
             <EducationEditor :educations="resume.educations" />
           </CollapsibleSection>
 
-          <CollapsibleSection
-            :id="sections[4].id"
-            :title="sections[4].title"
-            :isOpen="sections[4].isOpen"
-            @toggle="toggleSection"
-          >
+          <CollapsibleSection :id="sections[4].id" :title="sections[4].title" :isOpen="sections[4].isOpen"
+            @toggle="toggleSection">
             <!-- Skills Editor Component -->
             <SkillsEditor :skills="resume.skills" />
           </CollapsibleSection>
 
-          <CollapsibleSection
-            :id="sections[5].id"
-            :title="sections[5].title"
-            :isOpen="sections[5].isOpen"
-            @toggle="toggleSection"
-          >
+          <CollapsibleSection :id="sections[5].id" :title="sections[5].title" :isOpen="sections[5].isOpen"
+            @toggle="toggleSection">
             <!-- Other Sections Editor Component -->
             <OtherSectionsEditor :sections="resume.others" />
           </CollapsibleSection>
@@ -154,10 +113,10 @@ import ResumeReview from "./components/ResumeReview.vue";
 import LitePreview from "./components/LitePreview.vue";
 import NicePreview from "./components/NicePreview.vue";
 import LeftRightPreview from "./components/LeftRightPreview.vue";
-import { resumeData } from "./data";
 import InfoEditor from "./components/InfoEditor.vue";
 import CollapsibleSection from "./components/CollapsibleSection.vue";
 import TOC from "./components/TOC.vue";
+import dataStore from "./store";
 
 export default {
   components: {
@@ -175,13 +134,14 @@ export default {
     LeftRightPreview,
   },
   data() {
-    const resumeDataFromLocalStorage = JSON.parse(localStorage.getItem("resume"));
+
+    const resumeDataFromStore = dataStore.getDefaultResume();
     return {
       activeTab: "preview",
-      resume: resumeDataFromLocalStorage || resumeData,
-      resumeList: JSON.parse(localStorage.getItem("resume-list")) || [],
-      selectedPreviewLayout: resumeDataFromLocalStorage.previewLayout || "lite", // Default preview layout
-      selectedResume: "resume", // Default preview layout
+      resume: resumeDataFromStore,
+      resumeList: dataStore.getResumeList(),
+      selectedPreviewLayout: resumeDataFromStore.previewLayout || "lite", // Default preview layout
+      selectedResume: dataStore.defaultResumeId, // Default preview layout
       sections: [
         {
           id: "info-section",
@@ -246,8 +206,8 @@ export default {
         this.resumeList.push(this.selectedResume);
       }
 
-      localStorage.setItem(this.selectedResume, JSON.stringify(this.resume));
-      localStorage.setItem("resume-list", JSON.stringify(this.resumeList));
+      dataStore.saveResume(this.selectedResume, this.resume);
+      dataStore.saveResumeList(this.resumeList);
     },
 
     exportData() {
@@ -266,7 +226,7 @@ export default {
       reader.onload = (e) => {
         const data = JSON.parse(e.target.result);
         this.resume = data;
-        localStorage.setItem("resume", JSON.stringify(data));
+        dataStore.updateDefaultResume(data);
       };
       reader.readAsText(file);
     },
@@ -318,7 +278,7 @@ export default {
 
     loadResume() {
       // Load the selected resume from the list
-      this.resume = JSON.parse(localStorage.getItem(this.selectedResume));
+      this.resume = dataStore.getResumeById(this.selectedResume);
 
       // If the preview layout is saved in the resume data, load it
       if (this.resume && this.resume.previewLayout) {
@@ -342,10 +302,9 @@ export default {
           others: [],
           previewLayout: "lite", // Default preview layout
         };
-        // Save it in localStorage
         this.resumeList.push(newResumeName);
-        localStorage.setItem("resume-list", JSON.stringify(this.resumeList));
-        localStorage.setItem(newResumeName, JSON.stringify(this.resume));
+        dataStore.saveResumeList(this.resumeList);
+        dataStore.saveResume(newResumeName, this.resume);
       }
     },
 
@@ -360,9 +319,8 @@ export default {
         if (index !== -1) {
           // Remove resume from the list
           this.resumeList.splice(index, 1);
-          localStorage.setItem("resume-list", JSON.stringify(this.resumeList));
-          // Remove resume from localStorage
-          localStorage.removeItem(this.selectedResume);
+          dataStore.saveResumeList(this.resumeList);
+          dataStore.removeResume(this.selectedResume);
           // Set default values or select another resume if needed
           this.selectedResume =
             this.resumeList.length > 0 ? this.resumeList[0] : "";
@@ -378,11 +336,9 @@ export default {
       // Prompt the user for a new title for the cloned resume
       const newResumeName = prompt("Enter a name for the cloned resume:");
       if (newResumeName) {
-        // Add the cloned resume to the list and save it in localStorage
         this.resumeList.push(newResumeName);
-        localStorage.setItem("resume-list", JSON.stringify(this.resumeList));
-        localStorage.setItem(newResumeName, JSON.stringify(clonedResume));
-
+        dataStore.saveResumeList(this.resumeList);
+        dataStore.saveResume(newResumeName, clonedResume);
         // Switch to the newly cloned resume
         this.selectedResume = newResumeName;
         this.resume = clonedResume;

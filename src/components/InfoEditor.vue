@@ -2,13 +2,13 @@
   <div>
     <div>
       <label for="title">Title</label>
-      <input v-model="info.title" placeholder="Your title" />
+      <input v-model="resume.title" placeholder="Your title" />
     </div>
 
     <div>
       <label for="description">Description</label>
       <textarea
-        v-model="info.description"
+        v-model="resume.description"
         placeholder="Brief description"
       ></textarea>
     </div>
@@ -18,7 +18,7 @@
 <script>
 export default {
   props: {
-    info: {
+    resume: {
       type: Object,
       required: true,
     },
