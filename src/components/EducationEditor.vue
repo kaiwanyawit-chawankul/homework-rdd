@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div v-for="(education, index) in educations" :key="index" class="education-item">
+    <div
+      v-for="(education, index) in educations"
+      :key="index"
+      class="education-item"
+    >
       <!-- Degree Input -->
       <label :for="'degree-' + index" class="sr-only">Degree</label>
       <input
@@ -73,8 +77,8 @@ export default {
   props: {
     educations: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     addEducation() {
@@ -82,7 +86,7 @@ export default {
         degree: "",
         school: "",
         startDate: "",
-        endDate: ""
+        endDate: "",
       });
     },
     removeEducation(index) {
@@ -91,12 +95,12 @@ export default {
     validateDates(education) {
       if (education.startDate && education.endDate) {
         if (new Date(education.endDate) < new Date(education.startDate)) {
-          alert('End date cannot be earlier than start date');
-          education.endDate = ''; // Reset the end date
+          alert("End date cannot be earlier than start date");
+          education.endDate = ""; // Reset the end date
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

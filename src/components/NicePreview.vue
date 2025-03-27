@@ -4,8 +4,14 @@
     <section class="header">
       <h1>{{ resume.contact.name }}</h1>
       <p>
-        <a :href="'mailto:' + resume.contact.email">{{ resume.contact.email }}</a> ·
-        <a :href="'tel:' + resume.contact.mobile">{{ resume.contact.mobile }}</a> ·
+        <a :href="'mailto:' + resume.contact.email">{{
+          resume.contact.email
+        }}</a>
+        ·
+        <a :href="'tel:' + resume.contact.mobile">{{
+          resume.contact.mobile
+        }}</a>
+        ·
         {{ resume.contact.address }}
       </p>
     </section>
@@ -29,13 +35,22 @@
     <!-- Professional Experience Section -->
     <section class="experience">
       <h2>Professional Experience</h2>
-      <div v-for="(experience, index) in resume.experiences" :key="index" class="experience-item">
+      <div
+        v-for="(experience, index) in resume.experiences"
+        :key="index"
+        class="experience-item"
+      >
         <div class="experience-header">
           <h3>{{ experience.title }} | {{ experience.company }}</h3>
-          <p>{{ formatMonthYear(experience.startDate) }} - {{ formatMonthYear(experience.endDate) }}</p>
+          <p>
+            {{ formatMonthYear(experience.startDate) }} -
+            {{ formatMonthYear(experience.endDate) }}
+          </p>
         </div>
         <ul>
-          <li v-for="(task, taskIndex) in experience.tasks" :key="taskIndex">{{ task }}</li>
+          <li v-for="(task, taskIndex) in experience.tasks" :key="taskIndex">
+            {{ task }}
+          </li>
         </ul>
       </div>
     </section>
@@ -43,10 +58,17 @@
     <!-- Education Section -->
     <section class="education">
       <h2>Education</h2>
-      <div v-for="(education, index) in resume.educations" :key="index" class="education-item">
+      <div
+        v-for="(education, index) in resume.educations"
+        :key="index"
+        class="education-item"
+      >
         <ul>
-          <li>{{ education.degree }} from {{ education.school }} · {{ formatYear(education.startDate) }} - {{
-            formatYear(education.endDate) }}</li>
+          <li>
+            {{ education.degree }} from {{ education.school }} ·
+            {{ formatYear(education.startDate) }} -
+            {{ formatYear(education.endDate) }}
+          </li>
         </ul>
       </div>
     </section>
@@ -54,7 +76,11 @@
     <!-- Certifications Section -->
     <section class="certifications" v-if="resume.others[0]">
       <h2>Certifications</h2>
-      <div v-for="(certification, index) in resume.others[0].items" :key="index" class="certification-item">
+      <div
+        v-for="(certification, index) in resume.others[0].items"
+        :key="index"
+        class="certification-item"
+      >
         <ul>
           <li>{{ certification }}</li>
         </ul>
@@ -83,7 +109,7 @@
 <script>
 export default {
   props: {
-    resume: Object
+    resume: Object,
   },
   methods: {
     formatYear(dateString) {
@@ -97,7 +123,7 @@ export default {
       }
 
       const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+      const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
 
       return `${year}-${month}`;
     },
@@ -110,14 +136,14 @@ export default {
       }
 
       const year = date.getFullYear();
-      const month = date.toLocaleString('default', { month: 'short' }); // Get the short month name (e.g., "Oct")
+      const month = date.toLocaleString("default", { month: "short" }); // Get the short month name (e.g., "Oct")
 
       return `${month} ${year}`;
     },
     split(string, separator, index) {
       return string.split(separator)[index];
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -182,7 +208,6 @@ ul li {
   margin-left: 20px;
   text-align: left;
 }
-
 
 .experience-header {
   display: flex;

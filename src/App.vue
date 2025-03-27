@@ -11,31 +11,53 @@
 
     <!-- Tabs for Switching Between Editor and Preview -->
     <div class="tabs">
-      <select v-model="selectedResume" @change="loadResume" aria-label="Choose Resume">
-        <option v-for="(resumeKey, index) in resumeList" :key="index" :value="resumeKey">
+      <select
+        v-model="selectedResume"
+        @change="loadResume"
+        aria-label="Choose Resume"
+      >
+        <option
+          v-for="(resumeKey, index) in resumeList"
+          :key="index"
+          :value="resumeKey"
+        >
           {{ resumeKey }}
         </option>
       </select>
-      <button @click="activeTab = 'editor'" :class="{ active: activeTab === 'editor' }">Editor</button>
-      <button @click="activeTab = 'preview'" :class="{ active: activeTab === 'preview' }">Preview</button>
+      <button
+        @click="activeTab = 'editor'"
+        :class="{ active: activeTab === 'editor' }"
+      >
+        Editor
+      </button>
+      <button
+        @click="activeTab = 'preview'"
+        :class="{ active: activeTab === 'preview' }"
+      >
+        Preview
+      </button>
 
       <!-- New Buttons for Add and Delete Resume -->
       <button @click="addNewResume">Add New Resume</button>
       <button @click="cloneResume">Clone Resume</button>
-      <button v-if="resumeList.length > 0" @click="deleteResume">Delete Resume</button>
+      <button v-if="resumeList.length > 0" @click="deleteResume">
+        Delete Resume
+      </button>
     </div>
 
     <!-- Preview Layout Selector -->
     <div class="preview-layout-selector">
       <label for="previewLayout">Choose Preview Layout:</label>
-      <select v-model="selectedPreviewLayout" aria-label="Choose Preview Layout">
+      <select
+        v-model="selectedPreviewLayout"
+        aria-label="Choose Preview Layout"
+      >
         <option value="lite">Lite Preview</option>
         <option value="nice">Nice Preview</option>
         <option value="left-right">Left-Right Preview</option>
         <option value="resume">Resume Preview</option>
       </select>
     </div>
-
 
     <!-- Main Layout with Editor and Preview -->
     <div class="main-layout">
@@ -46,34 +68,62 @@
       <div class="editor" v-if="activeTab === 'editor'">
         <h2>Resume Form</h2>
         <form @submit.prevent="saveData">
-
-
-          <CollapsibleSection :id="sections[0].id" :title="sections[0].title" :isOpen="sections[0].isOpen" @toggle="toggleSection">
+          <CollapsibleSection
+            :id="sections[0].id"
+            :title="sections[0].title"
+            :isOpen="sections[0].isOpen"
+            @toggle="toggleSection"
+          >
             <!-- Info Editor Component-->
             <InfoEditor :info="resume" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[1].id" :title="sections[1].title" :isOpen="sections[1].isOpen" @toggle="toggleSection">
+          <CollapsibleSection
+            :id="sections[1].id"
+            :title="sections[1].title"
+            :isOpen="sections[1].isOpen"
+            @toggle="toggleSection"
+          >
             <!-- Contact Editor Component -->
             <ContactEditor :contact="resume.contact" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[2].id" :title="sections[2].title" :isOpen="sections[2].isOpen" @toggle="toggleSection">
+          <CollapsibleSection
+            :id="sections[2].id"
+            :title="sections[2].title"
+            :isOpen="sections[2].isOpen"
+            @toggle="toggleSection"
+          >
             <!-- Experience Editor Component -->
             <ExperienceEditor :experiences="resume.experiences" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[3].id" :title="sections[3].title" :isOpen="sections[3].isOpen" @toggle="toggleSection">
+          <CollapsibleSection
+            :id="sections[3].id"
+            :title="sections[3].title"
+            :isOpen="sections[3].isOpen"
+            @toggle="toggleSection"
+          >
             <!-- Education Editor Component -->
             <EducationEditor :educations="resume.educations" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[4].id" :title="sections[4].title" :isOpen="sections[4].isOpen" @toggle="toggleSection">
+          <CollapsibleSection
+            :id="sections[4].id"
+            :title="sections[4].title"
+            :isOpen="sections[4].isOpen"
+            @toggle="toggleSection"
+          >
             <!-- Skills Editor Component -->
             <SkillsEditor :skills="resume.skills" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[5].id" :title="sections[5].title" :isOpen="sections[5].isOpen" @toggle="toggleSection">
+          <CollapsibleSection
+            :id="sections[5].id"
+            :title="sections[5].title"
+            :isOpen="sections[5].isOpen"
+            @toggle="toggleSection"
+          >
             <!-- Other Sections Editor Component -->
             <OtherSectionsEditor :sections="resume.others" />
           </CollapsibleSection>
@@ -95,19 +145,19 @@
 </template>
 
 <script>
-import ContactEditor from './components/ContactEditor.vue';
-import ExperienceEditor from './components/ExperienceEditor.vue';
-import EducationEditor from './components/EducationEditor.vue';
-import SkillsEditor from './components/SkillsEditor.vue';
-import OtherSectionsEditor from './components/OtherSectionsEditor.vue';
-import ResumeReview from './components/ResumeReview.vue';
-import LitePreview from './components/LitePreview.vue';
-import NicePreview from './components/NicePreview.vue';
-import LeftRightPreview from './components/LeftRightPreview.vue';
-import { resumeData } from './data';
-import InfoEditor from './components/InfoEditor.vue';
-import CollapsibleSection from './components/CollapsibleSection.vue';
-import TOC from './components/TOC.vue';
+import ContactEditor from "./components/ContactEditor.vue";
+import ExperienceEditor from "./components/ExperienceEditor.vue";
+import EducationEditor from "./components/EducationEditor.vue";
+import SkillsEditor from "./components/SkillsEditor.vue";
+import OtherSectionsEditor from "./components/OtherSectionsEditor.vue";
+import ResumeReview from "./components/ResumeReview.vue";
+import LitePreview from "./components/LitePreview.vue";
+import NicePreview from "./components/NicePreview.vue";
+import LeftRightPreview from "./components/LeftRightPreview.vue";
+import { resumeData } from "./data";
+import InfoEditor from "./components/InfoEditor.vue";
+import CollapsibleSection from "./components/CollapsibleSection.vue";
+import TOC from "./components/TOC.vue";
 
 export default {
   components: {
@@ -122,51 +172,51 @@ export default {
     ResumeReview,
     LitePreview,
     NicePreview,
-    LeftRightPreview
+    LeftRightPreview,
   },
   data() {
     return {
-      activeTab: 'preview',
-      resume: JSON.parse(localStorage.getItem('resume')) || resumeData,
-      resumeList: JSON.parse(localStorage.getItem('resume-list')) || [],
-      selectedPreviewLayout: 'lite',  // Default preview layout
-      selectedResume: 'resume',  // Default preview layout
+      activeTab: "preview",
+      resume: JSON.parse(localStorage.getItem("resume")) || resumeData,
+      resumeList: JSON.parse(localStorage.getItem("resume-list")) || [],
+      selectedPreviewLayout: "lite", // Default preview layout
+      selectedResume: "resume", // Default preview layout
       sections: [
         {
-          id: 'info-section',
-          title: 'Application Info',
+          id: "info-section",
+          title: "Application Info",
           isOpen: true,
-          content: 'This is the content of Section 1.',
+          content: "This is the content of Section 1.",
         },
         {
-          id: 'contact-section',
-          title: 'Contact Information',
+          id: "contact-section",
+          title: "Contact Information",
           isOpen: false,
-          content: 'This is the content of Section 2.',
+          content: "This is the content of Section 2.",
         },
         {
-          id: 'experiences-section',
-          title: 'Experience',
+          id: "experiences-section",
+          title: "Experience",
           isOpen: false,
-          content: 'This is the content of Section 3.',
+          content: "This is the content of Section 3.",
         },
         {
-          id: 'educations-section',
-          title: 'Education',
+          id: "educations-section",
+          title: "Education",
           isOpen: false,
-          content: 'This is the content of Section 3.',
+          content: "This is the content of Section 3.",
         },
         {
-          id: 'skills-section',
-          title: 'Skills',
+          id: "skills-section",
+          title: "Skills",
           isOpen: false,
-          content: 'This is the content of Section 3.',
+          content: "This is the content of Section 3.",
         },
         {
-          id: 'others-section',
-          title: 'Other Sections',
+          id: "others-section",
+          title: "Other Sections",
           isOpen: false,
-          content: 'This is the content of Section 3.',
+          content: "This is the content of Section 3.",
         },
       ],
     };
@@ -174,17 +224,17 @@ export default {
   computed: {
     selectedPreviewComponent() {
       switch (this.selectedPreviewLayout) {
-        case 'nice':
+        case "nice":
           return NicePreview;
-        case 'left-right':
+        case "left-right":
           return LeftRightPreview;
-        case 'lite':
+        case "lite":
           return LitePreview;
-        case 'resume':
+        case "resume":
         default:
           return ResumeReview;
       }
-    }
+    },
   },
   methods: {
     saveData() {
@@ -196,14 +246,16 @@ export default {
       }
 
       localStorage.setItem(this.selectedResume, JSON.stringify(this.resume));
-      localStorage.setItem('resume-list', JSON.stringify(this.resumeList));
+      localStorage.setItem("resume-list", JSON.stringify(this.resumeList));
     },
 
     exportData() {
-      const blob = new Blob([JSON.stringify(this.resume)], { type: 'application/json' });
-      const link = document.createElement('a');
+      const blob = new Blob([JSON.stringify(this.resume)], {
+        type: "application/json",
+      });
+      const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = 'resume.json';
+      link.download = "resume.json";
       link.click();
     },
 
@@ -213,13 +265,13 @@ export default {
       reader.onload = (e) => {
         const data = JSON.parse(e.target.result);
         this.resume = data;
-        localStorage.setItem('resume', JSON.stringify(data));
+        localStorage.setItem("resume", JSON.stringify(data));
       };
       reader.readAsText(file);
     },
 
     toggleSection(id) {
-      this.activeTab = 'editor';
+      this.activeTab = "editor";
       const section = this.sections.find((section) => section.id === id);
       if (section) {
         section.isOpen = !section.isOpen;
@@ -227,20 +279,20 @@ export default {
     },
 
     printResume() {
-      this.activeTab = 'preview';
-      const printWindow = window.open('', '', 'width=800,height=600');
-      const previewHTML = document.querySelector('.A4').innerHTML;
+      this.activeTab = "preview";
+      const printWindow = window.open("", "", "width=800,height=600");
+      const previewHTML = document.querySelector(".A4").innerHTML;
       const styles = Array.from(document.styleSheets)
-        .map(sheet => {
+        .map((sheet) => {
           try {
             return Array.from(sheet.cssRules)
-              .map(rule => rule.cssText)
-              .join('');
+              .map((rule) => rule.cssText)
+              .join("");
           } catch (e) {
-            return '';
+            return "";
           }
         })
-        .join('');
+        .join("");
       printWindow.document.write(`
       <html>
         <head>
@@ -275,39 +327,44 @@ export default {
 
     addNewResume() {
       // Prompt user to add a new resume name
-      const newResumeName = prompt('Enter a new resume title:');
+      const newResumeName = prompt("Enter a new resume title:");
       if (newResumeName) {
         // Add new resume to the list and make it the active resume
         this.selectedResume = newResumeName;
         this.resume = {
-          title: '',
-          description: '',
+          title: "",
+          description: "",
           contact: {},
           experiences: [],
           educations: [],
           skills: [],
           others: [],
-          previewLayout: 'lite'  // Default preview layout
+          previewLayout: "lite", // Default preview layout
         };
         // Save it in localStorage
         this.resumeList.push(newResumeName);
-        localStorage.setItem('resume-list', JSON.stringify(this.resumeList));
+        localStorage.setItem("resume-list", JSON.stringify(this.resumeList));
         localStorage.setItem(newResumeName, JSON.stringify(this.resume));
       }
     },
 
     deleteResume() {
       // Confirm before deleting
-      if (confirm(`Are you sure you want to delete the resume "${this.selectedResume}"?`)) {
+      if (
+        confirm(
+          `Are you sure you want to delete the resume "${this.selectedResume}"?`,
+        )
+      ) {
         const index = this.resumeList.indexOf(this.selectedResume);
         if (index !== -1) {
           // Remove resume from the list
           this.resumeList.splice(index, 1);
-          localStorage.setItem('resume-list', JSON.stringify(this.resumeList));
+          localStorage.setItem("resume-list", JSON.stringify(this.resumeList));
           // Remove resume from localStorage
           localStorage.removeItem(this.selectedResume);
           // Set default values or select another resume if needed
-          this.selectedResume = this.resumeList.length > 0 ? this.resumeList[0] : '';
+          this.selectedResume =
+            this.resumeList.length > 0 ? this.resumeList[0] : "";
           this.resume = {};
         }
       }
@@ -318,19 +375,19 @@ export default {
       const clonedResume = JSON.parse(JSON.stringify(this.resume));
 
       // Prompt the user for a new title for the cloned resume
-      const newResumeName = prompt('Enter a name for the cloned resume:');
+      const newResumeName = prompt("Enter a name for the cloned resume:");
       if (newResumeName) {
         // Add the cloned resume to the list and save it in localStorage
         this.resumeList.push(newResumeName);
-        localStorage.setItem('resume-list', JSON.stringify(this.resumeList));
+        localStorage.setItem("resume-list", JSON.stringify(this.resumeList));
         localStorage.setItem(newResumeName, JSON.stringify(clonedResume));
 
         // Switch to the newly cloned resume
         this.selectedResume = newResumeName;
         this.resume = clonedResume;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
