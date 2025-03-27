@@ -1,6 +1,5 @@
 <template>
     <div>
-      <h3>Contact Information</h3>
       <label for="name">Name</label>
       <input v-model="contact.name" placeholder="Name" />
       <label for="address">Address</label>

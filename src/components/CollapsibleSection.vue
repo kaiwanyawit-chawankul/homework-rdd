@@ -1,5 +1,6 @@
 <template>
     <div class="collapsible-section">
+      <h3>{{title}}</h3>
       <button @click="toggle" class="toggle-button">
         {{ isOpen ? 'Hide' : 'Show' }} Section
       </button>
@@ -14,6 +15,10 @@
     name: 'CollapsibleSection',
     props: {
       id: {
+        type: String,
+        required: true,
+      },
+      title: {
         type: String,
         required: true,
       },

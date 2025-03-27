@@ -1,6 +1,5 @@
 <template>
     <div>
-      <h3>Other Sections</h3>
       <div v-for="(section, sectionIndex) in sections" :key="sectionIndex" class="other-section">
         <input v-model="section.title" placeholder="Category Title" />
 

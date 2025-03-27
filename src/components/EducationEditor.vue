@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>Education</h3>
     <div v-for="(education, index) in educations" :key="index" class="education-item">
       <!-- Degree Input -->
       <label :for="'degree-' + index" class="sr-only">Degree</label>

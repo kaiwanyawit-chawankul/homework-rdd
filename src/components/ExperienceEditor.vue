@@ -1,6 +1,5 @@
 <template>
     <div>
-      <h3>Experience</h3>
       <div v-for="(experience, index) in experiences" :key="index" class="experience-item">
         <input v-model="experience.company" placeholder="Company Name" />
         <input v-model="experience.title" placeholder="Job Title" />

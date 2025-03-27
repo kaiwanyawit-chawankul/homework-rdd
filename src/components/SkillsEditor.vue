@@ -1,6 +1,5 @@
 <template>
     <div>
-      <h3>Skills</h3>
       <div v-for="(skillCategory, categoryIndex) in skills" :key="categoryIndex" class="skill-category">
         <!-- Skill Category Title -->
         <input v-model="skillCategory.title" placeholder="Skill Category Title" />

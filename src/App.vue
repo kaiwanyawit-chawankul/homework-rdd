@@ -44,42 +44,32 @@
         <form @submit.prevent="saveData">
           <TOC :sections="sections" @toggle-section="toggleSection" />
 
-          <!-- <div v-for="section in sections" :key="section.id">
-        <CollapsibleSection
-          :id="section.id"
-          :isOpen="section.isOpen"
-          @toggle="toggleSection"
-        >
-          <p>{{ section.content }}</p>
-        </CollapsibleSection>
-      </div> -->
-
-          <CollapsibleSection :id="sections[0].id" :isOpen="sections[0].isOpen" @toggle="toggleSection">
+          <CollapsibleSection :id="sections[0].id" :title="sections[0].title" :isOpen="sections[0].isOpen" @toggle="toggleSection">
             <!-- Info Editor Component-->
             <InfoEditor :info="resume" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[1].id" :isOpen="sections[1].isOpen" @toggle="toggleSection">
+          <CollapsibleSection :id="sections[1].id" :title="sections[1].title" :isOpen="sections[1].isOpen" @toggle="toggleSection">
             <!-- Contact Editor Component -->
             <ContactEditor :contact="resume.contact" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[2].id" :isOpen="sections[2].isOpen" @toggle="toggleSection">
+          <CollapsibleSection :id="sections[2].id" :title="sections[2].title" :isOpen="sections[2].isOpen" @toggle="toggleSection">
             <!-- Experience Editor Component -->
             <ExperienceEditor :experiences="resume.experiences" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[3].id" :isOpen="sections[3].isOpen" @toggle="toggleSection">
+          <CollapsibleSection :id="sections[3].id" :title="sections[3].title" :isOpen="sections[3].isOpen" @toggle="toggleSection">
             <!-- Education Editor Component -->
             <EducationEditor :educations="resume.educations" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[4].id" :isOpen="sections[4].isOpen" @toggle="toggleSection">
+          <CollapsibleSection :id="sections[4].id" :title="sections[4].title" :isOpen="sections[4].isOpen" @toggle="toggleSection">
             <!-- Skills Editor Component -->
             <SkillsEditor :skills="resume.skills" />
           </CollapsibleSection>
 
-          <CollapsibleSection :id="sections[5].id" :isOpen="sections[5].isOpen" @toggle="toggleSection">
+          <CollapsibleSection :id="sections[5].id" :title="sections[5].title" :isOpen="sections[5].isOpen" @toggle="toggleSection">
             <!-- Other Sections Editor Component -->
             <OtherSectionsEditor :sections="resume.others" />
           </CollapsibleSection>
@@ -140,37 +130,37 @@ export default {
       sections: [
         {
           id: 'info-section',
-          title: 'info',
+          title: '',
           isOpen: true,
           content: 'This is the content of Section 1.',
         },
         {
           id: 'contact-section',
-          title: 'contact',
+          title: 'Contact Information',
           isOpen: false,
           content: 'This is the content of Section 2.',
         },
         {
           id: 'experiences-section',
-          title: 'experiences',
+          title: 'Experience',
           isOpen: false,
           content: 'This is the content of Section 3.',
         },
         {
           id: 'educations-section',
-          title: 'educations',
+          title: 'Education',
           isOpen: false,
           content: 'This is the content of Section 3.',
         },
         {
           id: 'skills-section',
-          title: 'skills',
+          title: 'Skills',
           isOpen: false,
           content: 'This is the content of Section 3.',
         },
         {
           id: 'others-section',
-          title: 'others',
+          title: 'Other Sections',
           isOpen: false,
           content: 'This is the content of Section 3.',
         },
