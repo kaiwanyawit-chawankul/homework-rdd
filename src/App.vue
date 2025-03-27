@@ -175,11 +175,12 @@ export default {
     LeftRightPreview,
   },
   data() {
+    const resumeDataFromLocalStorage = JSON.parse(localStorage.getItem("resume"));
     return {
       activeTab: "preview",
-      resume: JSON.parse(localStorage.getItem("resume")) || resumeData,
+      resume: resumeDataFromLocalStorage || resumeData,
       resumeList: JSON.parse(localStorage.getItem("resume-list")) || [],
-      selectedPreviewLayout: "lite", // Default preview layout
+      selectedPreviewLayout: resumeDataFromLocalStorage.previewLayout || "lite", // Default preview layout
       selectedResume: "resume", // Default preview layout
       sections: [
         {
