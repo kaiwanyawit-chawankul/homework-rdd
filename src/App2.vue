@@ -248,21 +248,115 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.tab-button {
-  padding: 8px 12px;
-  margin-right: 10px;
+/* General styles for buttons */
+button, select, input[type="file"] {
+  padding: 10px 15px;
+  font-size: 14px;
   cursor: pointer;
-  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
-.tab-button.active {
-  background-color: #3498db;
-  color: white;
+button:hover, select:hover, input[type="file"]:hover {
+  background-color: #f0f0f0;
 }
 
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.top-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.tabs select, .tabs button {
+  margin-right: 10px;
+}
+
+.preview-layout-selector {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Main Layout (Editor and Preview) */
 .main-layout {
   display: flex;
-  justify-content: space-between;
+  flex: 1;
   gap: 20px;
+  margin-top: 20px;
+}
+
+.editor, .preview {
+  flex: 1;
+  min-width: 0; /* Prevent flexbox from stretching too much */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.editor {
+  background-color: #f9f9f9;
+}
+
+.preview {
+  background-color: #ffffff;
+}
+
+.editor form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.editor button {
+  align-self: flex-end;
+}
+
+.preview h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .top-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .preview-layout-selector {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .editor, .preview {
+    min-width: 100%;
+  }
 }
 </style>
