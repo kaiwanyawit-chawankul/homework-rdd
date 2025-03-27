@@ -129,6 +129,7 @@ export default {
 
 .header h1 {
   margin-bottom: 0;
+  font-size: 1.5em;
 }
 
 .header p {
@@ -136,7 +137,7 @@ export default {
 }
 
 section h2 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin-top: 20px;
   margin-bottom: 10px;
   border-bottom: 1px solid black;
@@ -218,8 +219,9 @@ td {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* Creates 3 equal columns */
-  gap: 10px;
+  gap: 0px;
   /* Adjusts the space between columns */
+  font-size: 0.8em;
 }
 
 .three-columns li {
