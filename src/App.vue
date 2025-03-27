@@ -219,6 +219,7 @@ export default {
     },
 
     toggleSection(id) {
+      this.activeTab = 'editor';
       const section = this.sections.find((section) => section.id === id);
       if (section) {
         section.isOpen = !section.isOpen;
