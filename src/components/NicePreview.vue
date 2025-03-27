@@ -88,7 +88,10 @@
     </section>
 
     <!-- Technical Proficiencies Section -->
-    <section class="technical-proficiencies" v-if="resume.skills && resume.skills[1]">
+    <section
+      class="technical-proficiencies"
+      v-if="resume.skills && resume.skills[1]"
+    >
       <h2>Technical Proficiencies</h2>
       <table>
         <tbody>
