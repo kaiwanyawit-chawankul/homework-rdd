@@ -23,12 +23,6 @@
             <button @click="saveData">Save Resume</button>
         </div>
 
-        <!-- Tabs for Switching Between Editor and Preview -->
-        <div class="tabs">
-            <router-link to="/editor" class="tab-button">Editor</router-link>
-            <router-link to="/preview" class="tab-button">Preview</router-link>
-        </div>
-
         <!-- Preview Layout Selector -->
         <div class="preview-layout-selector">
             <label for="previewLayout">Choose Preview Layout:</label>
@@ -43,7 +37,9 @@
         <!-- Main Layout with Editor and Preview -->
         <div class="main-layout">
             <!-- Left Side: Editor -->
-            <router-view></router-view> <!-- This will display the editor components based on the route -->
+            <form @submit.prevent="saveData">
+                <router-view :resume="resume"></router-view> <!-- This will display the editor components based on the route -->
+            </form>
 
             <!-- Right Side: Preview -->
             <div v-if="activeTab === 'preview'" class="preview">

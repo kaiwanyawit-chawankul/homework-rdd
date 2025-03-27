@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Editor from './components/Editor.vue';
-import Preview from './components/Preview.vue';
 import InfoEditor from './components/InfoEditor.vue';
 import ContactEditor from './components/ContactEditor.vue';
 import ExperienceEditor from './components/ExperienceEditor.vue';
@@ -13,43 +12,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Editor,
-    children: [
-      {
-        path: 'info',
-        name: 'InfoEditor',
-        component: InfoEditor,
-      },
-      {
-        path: 'contact',
-        name: 'ContactEditor',
-        component: ContactEditor,
-      },
-      {
-        path: 'experience',
-        name: 'ExperienceEditor',
-        component: ExperienceEditor,
-      },
-      {
-        path: 'education',
-        name: 'EducationEditor',
-        component: EducationEditor,
-      },
-      {
-        path: 'skills',
-        name: 'SkillsEditor',
-        component: SkillsEditor,
-      },
-      {
-        path: 'other-sections',
-        name: 'OtherSectionsEditor',
-        component: OtherSectionsEditor,
-      },
-    ],
-  },
-  {
-    path: '/preview',
-    name: 'Preview',
-    component: Preview,
   },
   {
     path: '/editor',

@@ -13,19 +13,21 @@
 
       <div class="editor-content">
         <!-- Dynamic content based on the route -->
-        <router-view></router-view>
+        <router-view :resume="resume" :contact="resume.contact" :experiences="resume.experiences" :educations="resume.educations" :skills="resume.skills" :sections="resume.others"></router-view>
       </div>
     </div>
   </template>
 
   <script>
+
   export default {
     name: 'Editor',
-    data() {
-      return {
-        // You can add any data related to editor functionality here
-      };
+    props: {
+    resume: {
+      type: Object,
+      required: true,
     },
+  },
   };
   </script>
 
