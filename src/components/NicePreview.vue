@@ -19,7 +19,7 @@
     <!-- Core Competencies Section -->
     <section class="core-competencies" v-if="resume.skills[0]">
       <h2>Core Competencies</h2>
-      <ul>
+      <ul class="three-columns">
         <li v-for="(competency, index) in resume.skills[0].items" :key="index">
           {{ competency.name }}
         </li>
@@ -32,7 +32,7 @@
       <div v-for="(experience, index) in resume.experiences" :key="index" class="experience-item">
         <div class="experience-header">
           <h3>{{ experience.title }} | {{ experience.company }}</h3>
-          <p>{{ experience.startDate }} - {{ experience.endDate }}</p>
+          <p>{{ formatMonthYear(experience.startDate) }} - {{ formatMonthYear(experience.endDate) }}</p>
         </div>
         <ul>
           <li v-for="(task, taskIndex) in experience.tasks" :key="taskIndex">{{ task }}</li>
@@ -71,8 +71,8 @@
             <th>Rating</th>
           </tr>
           <tr v-for="(tech, index) in resume.skills[1].items" :key="index">
-            <td>{{ tech.name }}</td>
-            <td>{{ tech.rating }}</td>
+            <td>{{ split(tech.name, ":", 0) }}</td>
+            <td>{{ split(tech.name, ":", 1) }}</td>
           </tr>
         </tbody>
       </table>
@@ -100,6 +100,22 @@ export default {
       const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
 
       return `${year}-${month}`;
+    },
+    formatMonthYear(dateString) {
+      const date = new Date(dateString);
+
+      // Check if the date is valid
+      if (isNaN(date.getTime())) {
+        return "Present"; // Handle invalid input or invalid date
+      }
+
+      const year = date.getFullYear();
+      const month = date.toLocaleString('default', { month: 'short' }); // Get the short month name (e.g., "Oct")
+
+      return `${month} ${year}`;
+    },
+    split(string, separator, index) {
+      return string.split(separator)[index];
     }
   }
 };
@@ -189,5 +205,25 @@ p {
 .certifications,
 .technical-proficiencies {
   margin-top: 20px;
+}
+
+td {
+  text-align: left;
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+}
+
+.three-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Creates 3 equal columns */
+  gap: 10px;
+  /* Adjusts the space between columns */
+}
+
+.three-columns li {
+  list-style: none;
+  /* Optional: Removes the default bullet points */
 }
 </style>
