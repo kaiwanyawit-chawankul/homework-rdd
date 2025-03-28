@@ -7,7 +7,11 @@
     >
       <!-- Degree Input -->
       <div class="flex flex-col">
-        <label :for="'degree-' + index" class="text-sm font-semibold text-gray-700">Degree</label>
+        <label
+          :for="'degree-' + index"
+          class="text-sm font-semibold text-gray-700"
+          >Degree</label
+        >
         <input
           :id="'degree-' + index"
           v-model="education.degree"
@@ -19,7 +23,11 @@
 
       <!-- School Input -->
       <div class="flex flex-col">
-        <label :for="'school-' + index" class="text-sm font-semibold text-gray-700">School</label>
+        <label
+          :for="'school-' + index"
+          class="text-sm font-semibold text-gray-700"
+          >School</label
+        >
         <input
           :id="'school-' + index"
           v-model="education.school"
@@ -31,7 +39,11 @@
 
       <!-- Start Date Input -->
       <div class="flex flex-col">
-        <label :for="'start-date-' + index" class="text-sm font-semibold text-gray-700">Start Date</label>
+        <label
+          :for="'start-date-' + index"
+          class="text-sm font-semibold text-gray-700"
+          >Start Date</label
+        >
         <input
           :id="'start-date-' + index"
           v-model="education.startDate"
@@ -45,7 +57,11 @@
 
       <!-- End Date Input -->
       <div class="flex flex-col">
-        <label :for="'end-date-' + index" class="text-sm font-semibold text-gray-700">End Date</label>
+        <label
+          :for="'end-date-' + index"
+          class="text-sm font-semibold text-gray-700"
+          >End Date</label
+        >
         <input
           :id="'end-date-' + index"
           v-model="education.endDate"
@@ -64,8 +80,19 @@
         :aria-label="'Remove ' + education.degree + ' from education list'"
         class="mt-4 text-sm text-red-500 hover:text-red-700 focus:outline-none flex items-center"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 mr-2">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="w-5 h-5 mr-2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
         </svg>
         Remove Education
       </button>
@@ -126,7 +153,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* Visually hide the labels but keep them for accessibility */
 .sr-only {
   position: absolute;
