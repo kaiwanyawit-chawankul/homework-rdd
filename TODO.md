@@ -9,5 +9,5 @@
 [x] add dependabot
 [x] fix csp
 [] fix Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
-[] update UI
-[] update lint
+[x] update UI
+[x] update lint
