@@ -31,8 +31,19 @@
           class="text-red-500 hover:text-red-700 focus:outline-none ml-4"
           :id="'remove-section-' + sectionIndex"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
           </svg>
         </button>
       </div>
@@ -44,7 +55,10 @@
           :key="itemIndex"
           class="flex items-center space-x-4"
         >
-          <label :for="'item-' + sectionIndex + '-' + itemIndex" class="text-gray-600">
+          <label
+            :for="'item-' + sectionIndex + '-' + itemIndex"
+            class="text-gray-600"
+          >
             Item Name
           </label>
           <input
@@ -62,8 +76,19 @@
             :id="'remove-item-' + sectionIndex + '-' + itemIndex"
             class="text-red-500 hover:text-red-700 focus:outline-none"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
             </svg>
           </button>
         </li>

@@ -51,7 +51,12 @@
         <form @submit.prevent="saveData">
           <router-view :resume="resume"></router-view>
           <!-- This will display the editor components based on the route -->
-          <button @click="saveData" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save Resume</button>
+          <button
+            @click="saveData"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Save Resume
+          </button>
         </form>
       </div>
 
