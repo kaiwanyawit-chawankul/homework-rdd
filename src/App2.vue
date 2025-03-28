@@ -217,7 +217,7 @@ export default defineComponent({
             return Array.from(sheet.cssRules)
               .map((rule) => rule.cssText)
               .join("");
-          } catch  {
+          } catch {
             return "";
           }
         })
