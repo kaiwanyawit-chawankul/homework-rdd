@@ -15,14 +15,29 @@
         :aria-label="'Remove experience at ' + experience.company"
         class="absolute top-4 right-4 text-sm text-red-500 hover:text-red-700 focus:outline-none"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="w-5 h-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
         </svg>
       </button>
 
       <!-- Company Name -->
       <div>
-        <label :for="'company-' + index" class="text-sm font-semibold text-gray-700">Company Name</label>
+        <label
+          :for="'company-' + index"
+          class="text-sm font-semibold text-gray-700"
+          >Company Name</label
+        >
         <input
           v-model="experience.company"
           :id="'company-' + index"
@@ -34,7 +49,11 @@
 
       <!-- Job Title -->
       <div>
-        <label :for="'title-' + index" class="text-sm font-semibold text-gray-700">Job Title</label>
+        <label
+          :for="'title-' + index"
+          class="text-sm font-semibold text-gray-700"
+          >Job Title</label
+        >
         <input
           v-model="experience.title"
           :id="'title-' + index"
@@ -48,7 +67,11 @@
       <div class="grid grid-cols-2 gap-6">
         <!-- Start Date -->
         <div>
-          <label :for="'start-date-' + index" class="text-sm font-semibold text-gray-700">Start Date</label>
+          <label
+            :for="'start-date-' + index"
+            class="text-sm font-semibold text-gray-700"
+            >Start Date</label
+          >
           <input
             v-model="experience.startDate"
             :id="'start-date-' + index"
@@ -61,7 +84,11 @@
 
         <!-- End Date -->
         <div>
-          <label :for="'end-date-' + index" class="text-sm font-semibold text-gray-700">End Date</label>
+          <label
+            :for="'end-date-' + index"
+            class="text-sm font-semibold text-gray-700"
+            >End Date</label
+          >
           <input
             v-model="experience.endDate"
             :id="'end-date-' + index"
@@ -75,7 +102,11 @@
 
       <!-- Task List -->
       <ul>
-        <li v-for="(task, taskIndex) in experience.tasks" :key="taskIndex" class="space-y-4 relative">
+        <li
+          v-for="(task, taskIndex) in experience.tasks"
+          :key="taskIndex"
+          class="space-y-4 relative"
+        >
           <!-- Button Container for Remove Task and Split Task -->
           <div class="absolute top-2 right-4 flex space-x-2">
             <!-- Remove Task Button (X) -->
@@ -86,8 +117,19 @@
               :aria-label="'Remove task ' + task"
               class="text-sm text-red-500 hover:text-red-700 focus:outline-none"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
               </svg>
             </button>
 
@@ -97,7 +139,9 @@
               type="button"
               :id="'split-task-' + index"
               @click="splitTask(experience)"
-              :aria-label="'Split tasks for experience at ' + experience.company"
+              :aria-label="
+                'Split tasks for experience at ' + experience.company
+              "
               class="text-sm text-blue-500 hover:text-blue-700 focus:outline-none"
             >
               Split Tasks
@@ -105,7 +149,11 @@
           </div>
 
           <div>
-            <label :for="'task-' + index + '-' + taskIndex" class="text-sm font-semibold text-gray-700">Task</label>
+            <label
+              :for="'task-' + index + '-' + taskIndex"
+              class="text-sm font-semibold text-gray-700"
+              >Task</label
+            >
             <textarea
               v-model="experience.tasks[taskIndex]"
               :id="'task-' + index + '-' + taskIndex"
