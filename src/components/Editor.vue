@@ -44,7 +44,7 @@
     <div class="editor-content">
       <!-- Dynamic content based on the route -->
       <router-view
-        :resume="resume"
+        :info="resume"
         :contact="resume.contact"
         :experiences="resume.experiences"
         :educations="resume.educations"
@@ -57,7 +57,7 @@
 
 <script>
 export default {
-  name: "Editor",
+  name: "EditorComponent",
   props: {
     resume: {
       type: Object,

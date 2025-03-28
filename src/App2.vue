@@ -78,6 +78,7 @@ import LeftRightPreview from "./components/LeftRightPreview.vue";
 import dataStore from "./store";
 
 export default defineComponent({
+  name: "ResumeApp",
   data() {
     const resumeFromStore = dataStore.getDefaultResume();
     const resumeList = dataStore.getResumeList();
@@ -216,7 +217,7 @@ export default defineComponent({
             return Array.from(sheet.cssRules)
               .map((rule) => rule.cssText)
               .join("");
-          } catch (e) {
+          } catch  {
             return "";
           }
         })

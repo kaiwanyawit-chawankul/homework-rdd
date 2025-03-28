@@ -7,7 +7,7 @@ describe("InfoEditor.vue", () => {
   beforeEach(() => {
     wrapper = mount(InfoEditor, {
       props: {
-        resume: {
+        info: {
           title: "",
           description: "",
         },
@@ -30,7 +30,7 @@ describe("InfoEditor.vue", () => {
   it("binds the title input value to the resume object", async () => {
     const titleInput = wrapper.find("#title");
     await titleInput.setValue("Software Engineer");
-    expect(wrapper.vm.resume.title).toBe("Software Engineer");
+    expect(wrapper.vm.info.title).toBe("Software Engineer");
   });
 
   it("binds the description textarea value to the resume object", async () => {
@@ -38,7 +38,7 @@ describe("InfoEditor.vue", () => {
     await descriptionTextarea.setValue(
       "Experienced software engineer with a passion for building innovative solutions.",
     );
-    expect(wrapper.vm.resume.description).toBe(
+    expect(wrapper.vm.info.description).toBe(
       "Experienced software engineer with a passion for building innovative solutions.",
     );
   });

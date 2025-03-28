@@ -6,7 +6,7 @@
         >Title</label
       >
       <input
-        v-model="resume.title"
+        v-model="localInfo.title"
         id="title"
         type="text"
         placeholder="Your title"
@@ -20,7 +20,7 @@
         >Description</label
       >
       <textarea
-        v-model="resume.description"
+        v-model="localInfo.description"
         id="description"
         placeholder="Brief description"
         rows="4"
@@ -33,9 +33,19 @@
 <script>
 export default {
   props: {
-    resume: {
+    info: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    localInfo: {
+      get() {
+        return this.info; // Return the prop for use in the template
+      },
+      set(newValue) {
+        this.$emit("update:info", newValue); // Emit the updated value to parent
+      },
     },
   },
 };

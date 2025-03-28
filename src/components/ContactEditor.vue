@@ -5,7 +5,7 @@
         >Name</label
       >
       <input
-        v-model="contact.name"
+        v-model="localContact.name"
         id="name"
         type="text"
         placeholder="Enter your name"
@@ -18,7 +18,7 @@
         >Address</label
       >
       <input
-        v-model="contact.address"
+        v-model="localContact.address"
         id="address"
         type="text"
         placeholder="Enter your address"
@@ -31,7 +31,7 @@
         >Mobile</label
       >
       <input
-        v-model="contact.mobile"
+        v-model="localContact.mobile"
         id="mobile"
         type="tel"
         placeholder="Enter your mobile number"
@@ -44,7 +44,7 @@
         >Email</label
       >
       <input
-        v-model="contact.email"
+        v-model="localContact.email"
         id="email"
         type="email"
         placeholder="Enter your email"
@@ -60,6 +60,16 @@ export default {
     contact: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    localContact: {
+      get() {
+        return this.contact; // Return the prop for use in the template
+      },
+      set(newValue) {
+        this.$emit("update:contact", newValue); // Emit the updated value to parent
+      },
     },
   },
 };
