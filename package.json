@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "start": "vite",
+    "dev": "npm run test && vite",
+    "start": "npm run test && vite",
     "build": "vite build",
     "preview": "vite preview",
     "test:watch": "vitest",
@@ -33,11 +33,26 @@
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-vue": "^10.0.0",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jsdom": "^26.0.0",
     "lighthouse": "^12.5.0",
+    "lint-staged": "^15.5.0",
     "prettier": "3.5.3",
     "vite": "^6.2.3",
     "vitest": "^3.0.9"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "npm run lint",
+      "npm run format",
+      "npm run test"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run coverage"
+    }
   }
 }
