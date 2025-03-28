@@ -1,7 +1,9 @@
 <template>
   <div class="space-y-6 max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
     <div>
-      <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+      <label for="name" class="block text-sm font-medium text-gray-700"
+        >Name</label
+      >
       <input
         v-model="contact.name"
         id="name"
@@ -12,7 +14,9 @@
     </div>
 
     <div>
-      <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+      <label for="address" class="block text-sm font-medium text-gray-700"
+        >Address</label
+      >
       <input
         v-model="contact.address"
         id="address"
@@ -23,7 +27,9 @@
     </div>
 
     <div>
-      <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile</label>
+      <label for="mobile" class="block text-sm font-medium text-gray-700"
+        >Mobile</label
+      >
       <input
         v-model="contact.mobile"
         id="mobile"
@@ -34,7 +40,9 @@
     </div>
 
     <div>
-      <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+      <label for="email" class="block text-sm font-medium text-gray-700"
+        >Email</label
+      >
       <input
         v-model="contact.email"
         id="email"

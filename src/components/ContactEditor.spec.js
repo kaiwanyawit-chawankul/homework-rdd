@@ -29,8 +29,12 @@ describe("ContactEditor", () => {
 
   it("binds the input fields to the contact object", async () => {
     const nameInput = wrapper.find('input[placeholder="Enter your name"]');
-    const addressInput = wrapper.find('input[placeholder="Enter your address"]');
-    const mobileInput = wrapper.find('input[placeholder="Enter your mobile number"]');
+    const addressInput = wrapper.find(
+      'input[placeholder="Enter your address"]',
+    );
+    const mobileInput = wrapper.find(
+      'input[placeholder="Enter your mobile number"]',
+    );
     const emailInput = wrapper.find('input[placeholder="Enter your email"]');
 
     await nameInput.setValue("John Doe");

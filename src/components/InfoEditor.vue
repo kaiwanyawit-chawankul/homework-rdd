@@ -2,7 +2,9 @@
   <div class="space-y-6 max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
     <!-- Title Input -->
     <div>
-      <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+      <label for="title" class="block text-sm font-medium text-gray-700"
+        >Title</label
+      >
       <input
         v-model="resume.title"
         id="title"
@@ -14,7 +16,9 @@
 
     <!-- Description Textarea -->
     <div>
-      <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+      <label for="description" class="block text-sm font-medium text-gray-700"
+        >Description</label
+      >
       <textarea
         v-model="resume.description"
         id="description"

@@ -3,18 +3,40 @@
     <h2>Edit Resume</h2>
     <div class="editor-navigation">
       <!-- Links to Navigate to Different Editors -->
-      <router-link to="/editor/info" class="editor-link"  active-class="active-link">Info</router-link>
-      <router-link to="/editor/contact" class="editor-link" active-class="active-link"
+      <router-link
+        to="/editor/info"
+        class="editor-link"
+        active-class="active-link"
+        >Info</router-link
+      >
+      <router-link
+        to="/editor/contact"
+        class="editor-link"
+        active-class="active-link"
         >Contact</router-link
       >
-      <router-link to="/editor/experience" class="editor-link" active-class="active-link"
+      <router-link
+        to="/editor/experience"
+        class="editor-link"
+        active-class="active-link"
         >Experience</router-link
       >
-      <router-link to="/editor/education" class="editor-link" active-class="active-link"
+      <router-link
+        to="/editor/education"
+        class="editor-link"
+        active-class="active-link"
         >Education</router-link
       >
-      <router-link to="/editor/skills" class="editor-link" active-class="active-link">Skills</router-link>
-      <router-link to="/editor/other-sections" class="editor-link" active-class="active-link"
+      <router-link
+        to="/editor/skills"
+        class="editor-link"
+        active-class="active-link"
+        >Skills</router-link
+      >
+      <router-link
+        to="/editor/other-sections"
+        class="editor-link"
+        active-class="active-link"
         >Other Sections</router-link
       >
     </div>

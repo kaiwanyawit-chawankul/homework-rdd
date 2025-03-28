@@ -28,7 +28,6 @@
       <button v-if="resumeList.length > 0" @click="deleteResume">
         Delete Resume
       </button>
-
     </div>
 
     <!-- Preview Layout Selector -->
@@ -249,7 +248,9 @@ export default defineComponent({
 
 <style scoped>
 /* General styles for buttons */
-button, select, input[type="file"] {
+button,
+select,
+input[type="file"] {
   padding: 10px 15px;
   font-size: 14px;
   cursor: pointer;
@@ -258,7 +259,9 @@ button, select, input[type="file"] {
   margin-right: 10px;
 }
 
-button:hover, select:hover, input[type="file"]:hover {
+button:hover,
+select:hover,
+input[type="file"]:hover {
   background-color: #f0f0f0;
 }
 
@@ -282,7 +285,8 @@ button:disabled {
   margin-bottom: 20px;
 }
 
-.tabs select, .tabs button {
+.tabs select,
+.tabs button {
   margin-right: 10px;
 }
 
@@ -301,7 +305,8 @@ button:disabled {
   margin-top: 20px;
 }
 
-.editor, .preview {
+.editor,
+.preview {
   flex: 1;
   min-width: 0; /* Prevent flexbox from stretching too much */
   padding: 20px;
@@ -355,7 +360,8 @@ button:disabled {
     gap: 10px;
   }
 
-  .editor, .preview {
+  .editor,
+  .preview {
     min-width: 100%;
   }
 }
