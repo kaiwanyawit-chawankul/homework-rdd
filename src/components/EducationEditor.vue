@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     addEducation() {
-      this.educations.push({
+      this.localEducations.push({
         degree: "",
         school: "",
         startDate: "",
@@ -138,7 +138,7 @@ export default {
       });
     },
     removeEducation(index) {
-      this.educations.splice(index, 1);
+      this.localEducations.splice(index, 1);
     },
     validateDates(education) {
       if (education.startDate && education.endDate) {
