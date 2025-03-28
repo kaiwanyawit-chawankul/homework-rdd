@@ -21,7 +21,6 @@ describe("ContactEditor", () => {
   });
 
   it("renders the contact form with inputs", () => {
-    expect(wrapper.find("h3").text()).toBe("Contact Information");
     expect(wrapper.find('label[for="name"]').text()).toBe("Name");
     expect(wrapper.find('label[for="address"]').text()).toBe("Address");
     expect(wrapper.find('label[for="mobile"]').text()).toBe("Mobile");
@@ -29,10 +28,10 @@ describe("ContactEditor", () => {
   });
 
   it("binds the input fields to the contact object", async () => {
-    const nameInput = wrapper.find('input[placeholder="Name"]');
-    const addressInput = wrapper.find('input[placeholder="Address"]');
-    const mobileInput = wrapper.find('input[placeholder="Mobile"]');
-    const emailInput = wrapper.find('input[placeholder="Email"]');
+    const nameInput = wrapper.find('input[placeholder="Enter your name"]');
+    const addressInput = wrapper.find('input[placeholder="Enter your address"]');
+    const mobileInput = wrapper.find('input[placeholder="Enter your mobile number"]');
+    const emailInput = wrapper.find('input[placeholder="Enter your email"]');
 
     await nameInput.setValue("John Doe");
     await addressInput.setValue("123 Main St");

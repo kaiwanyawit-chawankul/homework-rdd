@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "test:coverage": "vitest --coverage",
+    "coverage": "vitest --coverage",
     "lhci": "lhci autorun",
     "lint": "eslint --ext .js,.vue --fix src",
     "format": "prettier .  --write"
