@@ -51,11 +51,11 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "npm run lint",
+      "npm run format"
     ],
     "*.{css,scss,md}": [
-      "prettier --write"
+      "npm run format"
     ]
   }
 }
