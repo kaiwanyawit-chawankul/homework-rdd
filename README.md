@@ -1,4 +1,6 @@
 [![CI](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/ci.yml/badge.svg)](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/github-code-scanning/codeql)
+[![Dependabot Updates](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/dependabot/dependabot-updates)
 
 # Free online resume builder
 
