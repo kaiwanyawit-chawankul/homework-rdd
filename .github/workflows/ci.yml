@@ -70,10 +70,21 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "20"
+
+      - name: Restore cached dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: npm install
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
 
       - name: Run Lighthouse CI
         run: npm run lhci
