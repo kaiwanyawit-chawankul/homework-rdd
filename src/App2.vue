@@ -1,76 +1,77 @@
 <template>
-  <div id="app">
-    <!-- Buttons on Top -->
-    <div class="top-buttons">
-      <button @click="exportData">Export Data</button>
-      <input type="file" @change="importData" aria-label="Import Data" />
-      <button @click="printResume">Print Resume</button>
-    </div>
+  <HeaderComponent />
+  <!-- Buttons on Top -->
+  <div class="top-buttons">
+    <button @click="exportData">Export Data</button>
+    <input type="file" @change="importData" aria-label="Import Data" />
+    <button @click="printResume">Print Resume</button>
+  </div>
 
-    <div class="tabs">
-      <select
-        v-model="selectedResume"
-        @change="loadResume"
-        aria-label="Choose Resume"
+  <div class="tabs">
+    <select
+      v-model="selectedResume"
+      @change="loadResume"
+      aria-label="Choose Resume"
+    >
+      <option
+        v-for="(resumeKey, index) in resumeList"
+        :key="index"
+        :value="resumeKey"
       >
-        <option
-          v-for="(resumeKey, index) in resumeList"
-          :key="index"
-          :value="resumeKey"
+        {{ resumeKey }}
+      </option>
+    </select>
+
+    <!-- New Buttons for Add and Delete Resume -->
+    <button @click="addNewResume">Add New Resume</button>
+    <button @click="cloneResume">Clone Resume</button>
+    <button v-if="resumeList.length > 0" @click="deleteResume">
+      Delete Resume
+    </button>
+  </div>
+
+  <!-- Preview Layout Selector -->
+  <div class="preview-layout-selector">
+    <label for="previewLayout">Choose Preview Layout:</label>
+    <select
+      v-model="selectedPreviewLayout"
+      aria-label="Choose Preview Layout"
+      id="previewLayout"
+    >
+      <option value="lite">Lite Preview</option>
+      <option value="nice">Nice Preview</option>
+      <option value="left-right">Left-Right Preview</option>
+      <option value="resume">Resume Preview</option>
+    </select>
+  </div>
+
+  <!-- Main Layout with Editor and Preview -->
+  <div class="main-layout">
+    <!-- Left Side: Editor -->
+    <div class="editor">
+      <form @submit.prevent="saveData">
+        <router-view :resume="resume"></router-view>
+        <!-- This will display the editor components based on the route -->
+        <button
+          @click="saveData"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          {{ resumeKey }}
-        </option>
-      </select>
-
-      <!-- New Buttons for Add and Delete Resume -->
-      <button @click="addNewResume">Add New Resume</button>
-      <button @click="cloneResume">Clone Resume</button>
-      <button v-if="resumeList.length > 0" @click="deleteResume">
-        Delete Resume
-      </button>
+          Save Resume
+        </button>
+      </form>
     </div>
 
-    <!-- Preview Layout Selector -->
-    <div class="preview-layout-selector">
-      <label for="previewLayout">Choose Preview Layout:</label>
-      <select
-        v-model="selectedPreviewLayout"
-        aria-label="Choose Preview Layout"
-      >
-        <option value="lite">Lite Preview</option>
-        <option value="nice">Nice Preview</option>
-        <option value="left-right">Left-Right Preview</option>
-        <option value="resume">Resume Preview</option>
-      </select>
-    </div>
-
-    <!-- Main Layout with Editor and Preview -->
-    <div class="main-layout">
-      <!-- Left Side: Editor -->
-      <div class="editor">
-        <form @submit.prevent="saveData">
-          <router-view :resume="resume"></router-view>
-          <!-- This will display the editor components based on the route -->
-          <button
-            @click="saveData"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Save Resume
-          </button>
-        </form>
-      </div>
-
-      <!-- Right Side: Preview -->
-      <div v-if="activeTab === 'preview'" class="preview">
-        <h2>Resume Preview</h2>
-        <div class="A4">
-          <div class="sheet padding-10mm">
-            <component :is="selectedPreviewComponent" :resume="resume" />
-          </div>
+    <!-- Right Side: Preview -->
+    <div v-if="activeTab === 'preview'" class="preview">
+      <h2>Resume Preview</h2>
+      <div class="A4">
+        <div class="sheet padding-10mm">
+          <component :is="selectedPreviewComponent" :resume="resume" />
         </div>
       </div>
     </div>
   </div>
+  <FooterComponent />
 </template>
 
 <script>
@@ -81,9 +82,15 @@ import LitePreview from "./components/LitePreview.vue";
 import NicePreview from "./components/NicePreview.vue";
 import LeftRightPreview from "./components/LeftRightPreview.vue";
 import dataStore from "./store";
+import HeaderComponent from "./components/HeaderComponent.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 
 export default defineComponent({
   name: "ResumeApp",
+  components: {
+    HeaderComponent,
+    FooterComponent,
+  },
   data() {
     const resumeFromStore = dataStore.getDefaultResume();
     const resumeList = dataStore.getResumeList();
