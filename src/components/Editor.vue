@@ -80,7 +80,7 @@ export default {
 
 .editor-link {
   padding: 10px;
-  background-color: #3498db;
+  background-color: #1d5e8d;
   color: white;
   text-decoration: none;
   border-radius: 5px;
