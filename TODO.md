@@ -1,4 +1,4 @@
-[] Create a side bar for editor TOC (sticky, link to section)
+[x] Create a side bar for editor TOC (sticky, link to section)
 [x] Collapsible editor section
 [x] Fix print preview
 [x] Fix nice template
