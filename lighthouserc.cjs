@@ -19,11 +19,11 @@ module.exports = {
     assert: {
       preset: "lighthouse:recommended", // You can use predefined assertions (optional)
       assertions: {
-        "categories:performance": ["warn", {"minScore": 0.9}],
-        "categories:accessibility": ["error", {"minScore": 1}],
-        "categories:best-practices": ["error", {"minScore": 1}],
-        "categories:seo": ["error", {"minScore": 1}],
-        "categories:pwa": ["warn", {"minScore": 1}]
+        "categories:performance": ["warn", { minScore: 0.9 }],
+        "categories:accessibility": ["error", { minScore: 1 }],
+        "categories:best-practices": ["error", { minScore: 1 }],
+        "categories:seo": ["error", { minScore: 1 }],
+        "categories:pwa": ["warn", { minScore: 1 }],
       },
     },
     upload: {

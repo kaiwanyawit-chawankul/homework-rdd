@@ -23,7 +23,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # You can adjust to the version of Node.js you're using.
+          node-version: "20" # You can adjust to the version of Node.js you're using.
 
       # Cache dependencies to speed up builds
       - name: Cache Node.js modules
@@ -63,7 +63,7 @@ jobs:
   lhci:
     runs-on: ubuntu-latest
     needs: setup
-    env:  # Set environment variables globally for this job
+    env: # Set environment variables globally for this job
       LHCI_URL: https://homework-rdd.vercel.app
       LHCI_RUN: 3
     steps:
