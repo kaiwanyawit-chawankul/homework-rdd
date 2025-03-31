@@ -3,9 +3,7 @@
 module.exports = {
   ci: {
     collect: {
-      url: [
-        process.env.LHCI_URL || "http://localhost:5173"
-      ], // URL of your local Vite project (update if different)
+      url: [process.env.LHCI_URL || "http://localhost:5173"], // URL of your local Vite project (update if different)
       startServerCommand: "npm run dev", // Command to start your Vite server
       numberOfRuns: process.env.LHCI_RUN || 1, // Number of runs to perform
       settings: {
