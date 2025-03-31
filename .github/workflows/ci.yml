@@ -65,6 +65,7 @@ jobs:
     needs: setup
     env:  # Set environment variables globally for this job
       LHCI_URL: https://homework-rdd.vercel.app
+      LHCI_RUN: 3
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

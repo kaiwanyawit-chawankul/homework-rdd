@@ -7,7 +7,7 @@ module.exports = {
         process.env.LHCI_URL || "http://localhost:5173"
       ], // URL of your local Vite project (update if different)
       startServerCommand: "npm run dev", // Command to start your Vite server
-      numberOfRuns: 1, // Number of runs to perform
+      numberOfRuns: process.env.LHCI_RUN || 1, // Number of runs to perform
       settings: {
         onlyCategories: [
           "performance",
