@@ -6,13 +6,13 @@
       <p>{{ resume.contact.address }}</p>
       <p>
         Email:
-        <a :href="'mailto:' + resume.contact.email">{{
+        <a :href="'mailto:' + resume.contact.email" aria-label="Email link">{{
           resume.contact.email
         }}</a>
       </p>
       <p>
         Mobile:
-        <a :href="'tel:' + resume.contact.mobile">{{
+        <a :href="'tel:' + resume.contact.mobile" aria-label="Mobile link">{{
           resume.contact.mobile
         }}</a>
       </p>
