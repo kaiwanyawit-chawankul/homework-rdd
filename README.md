@@ -4,7 +4,7 @@
 
 # Free online resume builder
 
-Our resume builder is free to use, and we don't store your data. You retain full ownership of your resume, which stays on your device. If you're satisfied with your resume or land a job thanks to it, feel free to show your appreciation at [ko-fi.com/kaiwanyawitchawankul](https://ko-fi.com/kaiwanyawitchawankul].
+Our resume builder is free to use, and we don't store your data. You retain full ownership of your resume, which stays on your device. If you're satisfied with your resume or land a job thanks to it, feel free to show your appreciation at [ko-fi.com/kaiwanyawitchawankul](https://ko-fi.com/kaiwanyawitchawankul).
 
 ## Features
 
