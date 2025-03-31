@@ -1,11 +1,25 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Editor from "./components/Editor.vue";
-import InfoEditor from "./components/InfoEditor.vue";
-import ContactEditor from "./components/ContactEditor.vue";
-import ExperienceEditor from "./components/ExperienceEditor.vue";
-import EducationEditor from "./components/EducationEditor.vue";
-import SkillsEditor from "./components/SkillsEditor.vue";
-import OtherSectionsEditor from "./components/OtherSectionsEditor.vue";
+import { defineAsyncComponent } from "vue";
+
+const Editor = defineAsyncComponent(() => import("./components/Editor.vue"));
+const InfoEditor = defineAsyncComponent(
+  () => import("./components/InfoEditor.vue"),
+);
+const ContactEditor = defineAsyncComponent(
+  () => import("./components/ContactEditor.vue"),
+);
+const ExperienceEditor = defineAsyncComponent(
+  () => import("./components/ExperienceEditor.vue"),
+);
+const EducationEditor = defineAsyncComponent(
+  () => import("./components/EducationEditor.vue"),
+);
+const SkillsEditor = defineAsyncComponent(
+  () => import("./components/SkillsEditor.vue"),
+);
+const OtherSectionsEditor = defineAsyncComponent(
+  () => import("./components/OtherSectionsEditor.vue"),
+);
 
 const routes = [
   {
