@@ -24,6 +24,8 @@ module.exports = {
         "categories:best-practices": ["error", { minScore: 1 }],
         "categories:seo": ["error", { minScore: 1 }],
         "categories:pwa": ["warn", { minScore: 1 }],
+        "third-party-cookies": ["warn", {"minScore": 1}],
+        "inspector-issues": ["warn", {"minScore": 1}],
       },
     },
     upload: {
