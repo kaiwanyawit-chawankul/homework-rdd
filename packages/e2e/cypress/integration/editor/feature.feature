@@ -1,7 +1,7 @@
-Feature: Cypress Home Page
+Feature: Resume Builder Home Page
 
-    I want enter to Cypress home page
+    I want enter to Resume Builder home page
 
-    Scenario: Opening a Cypress home page
-        Given I open "https://www.cypress.io"
-        Then Should has text "npm install cypress"
+    Scenario: Opening a Resume Builder home page
+        Given I open "https://homework-rdd.vercel.app/"
+        Then Should has text "Resume Builder"
