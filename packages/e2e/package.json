@@ -1,0 +1,21 @@
+{
+  "name": "resume-e2e",
+  "version": "1.0.0",
+  "description": "e2e",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "test:open": "cypress open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
+    "@cypress/webpack-preprocessor": "^6.0.4",
+    "cypress": "^14.2.1"
+  },
+  "dependencies": {
+    "path-browserify": "^1.0.1"
+  }
+}
