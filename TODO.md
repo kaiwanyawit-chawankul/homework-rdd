@@ -13,3 +13,5 @@
 [x] update lint
 [] Fix ui when no resume data
 [] Fix resume data not gone after deletion
+[x] mono-repo
+[] Add e2e
