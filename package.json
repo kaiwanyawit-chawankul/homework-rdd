@@ -18,7 +18,7 @@
     "lhci": "cd packages/app && npm run lhci",
     "lint": "eslint --ext .js,.vue --fix src",
     "format": "prettier .  --write",
-    "prepare": "node prepare.cjs"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.14",
