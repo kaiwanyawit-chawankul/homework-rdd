@@ -58,6 +58,10 @@ jobs:
       - name: Run coverage
         run: npm run test:coverage
 
+      # Optionally, you can check for coverage if you want
+      - name: Run e2e
+        run: npm run e2e
+
   # You can add more jobs such as deploying or running Lighthouse CI (lhci)
   # If you want to add Lighthouse CI to this action:
   lhci:
