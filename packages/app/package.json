@@ -1,20 +1,18 @@
 {
-  "name": "my-vue-app-mono-repo",
+  "name": "my-vue-app",
   "private": true,
   "version": "0.0.0",
-  "workspaces": [
-    "packages/*"
-  ],
+  "type": "module",
   "scripts": {
-    "dev": "cd packages/app && npm run dev",
-    "start": "cd packages/app && npm run start",
-    "build": "cd packages/app && npm run build",
-    "preview": "cd packages/app && npm run preview",
-    "test:watch": "cd packages/app && npm run test:watch",
-    "test": "cd packages/app && npm run test",
-    "test:ui": "cd packages/app && npm run test:ui",
-    "test:coverage": "cd packages/app && npm run test:coverage",
-    "lhci": "cd packages/app && npm run lhci",
+    "dev": "npm run test && vite",
+    "start": "npm run test && vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:watch": "vitest",
+    "test": "vitest run --retry 1",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lhci": "lhci autorun",
     "lint": "eslint --ext .js,.vue --fix src",
     "format": "prettier .  --write",
     "prepare": "husky install"
