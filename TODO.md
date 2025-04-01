@@ -11,3 +11,5 @@
 [] fix Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
 [x] update UI
 [x] update lint
+[] Fix ui when no resume data
+[] Fix resume data not gone after deletion
