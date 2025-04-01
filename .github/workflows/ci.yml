@@ -34,9 +34,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      # Cache Cypress binary directory
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+
       # Install dependencies
       - name: Install dependencies
         run: npm install
+
+      # Ensure Cypress binary is installed (this will only run if the binary is missing)
+      - name: Install Cypress
+        run: npx cypress install
 
       # Lint the code
       - name: Run ESLint
