@@ -34,9 +34,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      # Cache Cypress binary directory
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+
       # Install dependencies
       - name: Install dependencies
         run: npm install
+
+      # Ensure Cypress binary is installed (this will only run if the binary is missing)
+      - name: Install Cypress
+        run: npx cypress install
 
       # Lint the code
       - name: Run ESLint
@@ -57,6 +70,10 @@ jobs:
       # Optionally, you can check for coverage if you want
       - name: Run coverage
         run: npm run test:coverage
+
+      # Optionally, you can check for coverage if you want
+      - name: Run e2e
+        run: npm run e2e
 
   # You can add more jobs such as deploying or running Lighthouse CI (lhci)
   # If you want to add Lighthouse CI to this action:

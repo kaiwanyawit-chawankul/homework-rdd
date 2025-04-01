@@ -19,5 +19,9 @@ export default defineConfig({
       "@": "/src",
     },
   },
+  build: {
+    outDir: "../../dist",
+    emptyOutDir: true, // also necessary
+  },
   plugins: [vue(), tailwindcss()],
 });
