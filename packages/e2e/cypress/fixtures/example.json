@@ -1,5 +1,102 @@
 {
-  "name": "Using fixtures to represent data",
-  "email": "hello@cypress.io",
-  "body": "Fixtures are a great way to mock data for responses to routes"
+  "version": "1.0",
+  "title": "Software Engineer",
+  "description": "Experienced software engineer with a strong background in web development and machine learning.",
+  "contact": {
+    "name": "John Doe",
+    "address": "1234 Elm Street, Springfield, IL, 62704",
+    "mobile": "+1 (555) 123-4567",
+    "email": "johndoe@email.com"
+  },
+  "experiences": [
+    {
+      "company": "Tech Solutions Inc.",
+      "title": "Software Developer",
+      "startDate": "2020-06-01",
+      "endDate": "2023-12-31",
+      "tasks": [
+        "Developed and maintained web applications using React and Node.js.",
+        "Collaborated with cross-functional teams to design and implement new features.",
+        "Optimized front-end performance to ensure a smooth user experience."
+      ]
+    },
+    {
+      "company": "Innovative Tech Co.",
+      "title": "Junior Developer",
+      "startDate": "2018-05-01",
+      "endDate": "2020-05-31",
+      "tasks": [
+        "Assisted in the development of internal tools using Python and Flask.",
+        "Worked on bug fixes and code improvements for existing software products.",
+        "Participated in code reviews and contributed to team knowledge-sharing sessions."
+      ]
+    }
+  ],
+  "educations": [
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "school": "University of Springfield",
+      "startDate": "2014-08-01",
+      "endDate": "2018-05-15"
+    }
+  ],
+  "skills": [
+    {
+      "title": "Skills",
+      "items": [
+        {
+          "name": "Problem Solving",
+          "rating": "Advanced"
+        },
+        {
+          "name": "Communication",
+          "rating": "Intermediate"
+        }
+      ]
+    },
+    {
+      "title": "TechStacks",
+      "items": [
+        {
+          "name": "JavaScript",
+          "rating": "Advanced"
+        },
+        {
+          "name": "React",
+          "rating": "Advanced"
+        },
+        {
+          "name": "Node.js",
+          "rating": "Intermediate"
+        },
+        {
+          "name": "Python",
+          "rating": "Intermediate"
+        }
+      ]
+    }
+  ],
+  "others": [
+    {
+      "title": "Certifications",
+      "items": [
+        "Certified Kubernetes Administrator (CKA)",
+        "AWS Certified Solutions Architect"
+      ]
+    },
+    {
+      "title": "Side Projects",
+      "items": [
+        "WeatherApp - A web application that shows weather forecasts using public APIs.",
+        "TaskMaster - A task management app built with React and Redux."
+      ]
+    },
+    {
+      "title": "Portfolios",
+      "items": [
+        "https://github.com/kaiwanyawit-chawankul/homework-rdd",
+        "https://local-resume.vercel.app"
+      ]
+    }
+  ]
 }

@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "title": "Data Scientist",
+  "description": "A detail-oriented data scientist with expertise in machine learning, data analysis, and statistical modeling. Passionate about turning data into actionable insights.",
+  "contact": {
+    "name": "Mock User",
+    "address": "456 Oak Avenue, Denver, CO 80203",
+    "mobile": "+1 (555) 987-6543",
+    "email": "mock.user@email.com"
+  },
+  "experiences": [
+    {
+      "company": "Data Insights LLC",
+      "title": "Lead Data Scientist",
+      "startDate": "2021-03-01",
+      "endDate": "Present",
+      "tasks": [
+        "Led data analysis projects for clients in finance, healthcare, and retail.",
+        "Developed machine learning models to predict customer behavior.",
+        "Presented findings and recommendations to executives and stakeholders."
+      ]
+    },
+    {
+      "company": "Tech Analytics Co.",
+      "title": "Data Scientist",
+      "startDate": "2018-09-15",
+      "endDate": "2021-02-28",
+      "tasks": [
+        "Analyzed large datasets to uncover trends and patterns.",
+        "Built predictive models for demand forecasting.",
+        "Collaborated with cross-functional teams to improve data pipelines."
+      ]
+    },
+    {
+      "company": "Marketing Analytics Group",
+      "title": "Data Analyst",
+      "startDate": "2016-06-01",
+      "endDate": "2018-08-31",
+      "tasks": [
+        "Performed customer segmentation analysis to optimize marketing campaigns.",
+        "Created dashboards and reports to track campaign performance.",
+        "Used SQL and Python for data cleaning and analysis."
+      ]
+    }
+  ],
+  "educations": [
+    {
+      "degree": "Master of Science in Data Science",
+      "school": "University of Colorado Boulder",
+      "startDate": "2014-08-01",
+      "endDate": "2016-05-15"
+    },
+    {
+      "degree": "Bachelor of Science in Statistics",
+      "school": "University of Denver",
+      "startDate": "2010-08-01",
+      "endDate": "2014-05-15"
+    }
+  ],
+  "skills": [
+    {
+      "title": "Skills",
+      "items": [
+        {
+          "name": "Data Analysis",
+          "rating": "Advanced"
+        },
+        {
+          "name": "Machine Learning",
+          "rating": "Intermediate"
+        },
+        {
+          "name": "Statistical Modeling",
+          "rating": "Advanced"
+        }
+      ]
+    },
+    {
+      "title": "TechStacks",
+      "items": [
+        {
+          "name": "Python",
+          "rating": "Advanced"
+        },
+        {
+          "name": "R",
+          "rating": "Intermediate"
+        },
+        {
+          "name": "SQL",
+          "rating": "Advanced"
+        },
+        {
+          "name": "TensorFlow",
+          "rating": "Intermediate"
+        },
+        {
+          "name": "Tableau",
+          "rating": "Advanced"
+        }
+      ]
+    }
+  ],
+  "others": [
+    {
+      "title": "Certifications",
+      "items": [
+        "Certified Data Scientist (DASCA)",
+        "Deep Learning Specialization by Andrew Ng (Coursera)"
+      ]
+    },
+    {
+      "title": "Side Projects",
+      "items": [
+        "Developed a sentiment analysis tool using NLP and Python.",
+        "Created a recommendation engine for movies using collaborative filtering."
+      ]
+    },
+    {
+      "title": "Portfolios",
+      "items": [
+        "https://github.com/kaiwanyawit-chawankul/homework-rdd",
+        "https://local-resume.vercel.app"
+      ]
+    }
+  ]
+}

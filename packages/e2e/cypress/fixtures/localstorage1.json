@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "title": "Full Stack Developer",
+  "description": "Experienced full stack developer with a passion for building scalable web applications and solving complex technical problems.",
+  "contact": {
+    "name": "Jane Doe",
+    "address": "123 Maple Street, Springfield, IL 62701",
+    "mobile": "+1 (555) 123-4567",
+    "email": "jane.doe@email.com"
+  },
+  "experiences": [
+    {
+      "company": "Tech Innovators Inc.",
+      "title": "Senior Software Engineer",
+      "startDate": "2022-01-15",
+      "endDate": "Present",
+      "tasks": [
+        "Led the development of a microservices-based e-commerce platform.",
+        "Collaborated with cross-functional teams to deliver features on time.",
+        "Mentored junior developers and conducted code reviews."
+      ]
+    },
+    {
+      "company": "Creative Solutions Ltd.",
+      "title": "Full Stack Developer",
+      "startDate": "2019-06-01",
+      "endDate": "2021-12-31",
+      "tasks": [
+        "Developed and maintained customer-facing web applications.",
+        "Integrated third-party APIs to enhance application functionality.",
+        "Worked on both front-end and back-end development using React and Node.js."
+      ]
+    }
+  ],
+  "educations": [
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "school": "University of Illinois",
+      "startDate": "2015-08-01",
+      "endDate": "2019-05-30"
+    }
+  ],
+  "skills": [
+    {
+      "title": "Skills",
+      "items": [
+        {
+          "name": "Problem Solving",
+          "rating": "Advanced"
+        },
+        {
+          "name": "Communication",
+          "rating": "Intermediate"
+        },
+        {
+          "name": "Leadership",
+          "rating": "Advanced"
+        }
+      ]
+    },
+    {
+      "title": "TechStacks",
+      "items": [
+        {
+          "name": "React",
+          "rating": "Advanced"
+        },
+        {
+          "name": "Node.js",
+          "rating": "Advanced"
+        },
+        {
+          "name": "MongoDB",
+          "rating": "Intermediate"
+        },
+        {
+          "name": "Docker",
+          "rating": "Intermediate"
+        },
+        {
+          "name": "AWS",
+          "rating": "Basic"
+        }
+      ]
+    }
+  ],
+  "others": [
+    {
+      "title": "Certifications",
+      "items": [
+        "AWS Certified Solutions Architect",
+        "Certified Kubernetes Administrator"
+      ]
+    },
+    {
+      "title": "Side Projects",
+      "items": [
+        "Developed a personal finance tracking web app with React and Node.js.",
+        "Built an open-source API for weather data aggregation."
+      ]
+    },
+    {
+      "title": "Portfolios",
+      "items": [
+        "https://github.com/kaiwanyawit-chawankul/homework-rdd",
+        "https://local-resume.vercel.app"
+      ]
+    }
+  ]
+}

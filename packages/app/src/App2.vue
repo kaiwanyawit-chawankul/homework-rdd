@@ -7,9 +7,13 @@
     <div class="editor">
       <!-- Buttons on Top -->
       <div class="top-buttons">
-        <button @click="exportData">Export Data</button>
+        <button @click="exportData" aria-label="Export Resume">
+          Export Data
+        </button>
         <input type="file" @change="importData" aria-label="Import Data" />
-        <button @click="printResume">Print Resume</button>
+        <button @click="printResume" aria-label="Print Resume">
+          Print Resume
+        </button>
       </div>
 
       <div class="tabs">
@@ -28,9 +32,17 @@
         </select>
 
         <!-- New Buttons for Add and Delete Resume -->
-        <button @click="addNewResume">Add New Resume</button>
-        <button @click="cloneResume">Clone Resume</button>
-        <button v-if="resumeList.length > 0" @click="deleteResume">
+        <button @click="addNewResume" aria-label="Add New Resume">
+          Add New Resume
+        </button>
+        <button @click="cloneResume" aria-label="Clone Resume">
+          Clone Resume
+        </button>
+        <button
+          v-if="resumeList.length > 0"
+          @click="deleteResume"
+          aria-label="Delete Resume"
+        >
           Delete Resume
         </button>
       </div>
@@ -64,7 +76,7 @@
       </div>
       <h2>Resume Preview</h2>
       <div class="A4">
-        <div class="sheet padding-10mm">
+        <div class="sheet padding-10mm" id="preview-content">
           <component :is="selectedPreviewComponent" :resume="resume" />
         </div>
       </div>

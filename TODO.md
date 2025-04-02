@@ -15,3 +15,4 @@
 [] Fix resume data not gone after deletion
 [x] mono-repo
 [] Add e2e
+[] prevent overwritten on clone
