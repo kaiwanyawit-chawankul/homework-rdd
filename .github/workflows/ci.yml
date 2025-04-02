@@ -64,6 +64,10 @@ jobs:
       - name: Run tests
         run: npm run test
 
+      # Run test coverage
+      - name: Run tests
+        run: npm run test:coverage
+
       # Build the project (optional, depending on your workflow)
       - name: Build project
         run: npm run build

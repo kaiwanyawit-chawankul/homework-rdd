@@ -16,7 +16,7 @@
     "test:ui": "cd packages/app && npm run test:ui",
     "e2e": "cd packages/e2e && npm run test",
     "e2e:ui": "cd packages/e2e && npm run test:open",
-    "test:coverage": "cd packages/app && npm run test:coverage",
+    "test:coverage": "cd packages/app && npm run test:coverage-ci",
     "lhci": "cd packages/app && npm run lhci",
     "lint": "eslint --ext .js,.vue --fix packages",
     "format": "prettier .  --write",
