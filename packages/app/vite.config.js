@@ -11,7 +11,7 @@ export default defineConfig({
       reporter: ["text", "lcov", "json", "html"], // You can choose the reporters you want (text, lcov, json, etc.)
       all: true, // Collect coverage for all files, not just the ones tested
       include: ["src/**/*.js", "src/**/*.vue"], // Path to the files you want to include in the coverage
-      exclude: ["src/**/*.test.js", "src/**/*.test.vue"], // Exclude test files from coverage
+      exclude: ["src/**/*.test.js", "src/**/*.test.vue", "src/**/*.spec.js"], // Exclude test files from coverage
       reportsDirectory: "./../../coverage",
       enabled: true,
     },
