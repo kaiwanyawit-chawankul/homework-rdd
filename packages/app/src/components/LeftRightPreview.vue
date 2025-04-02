@@ -282,9 +282,6 @@ h4 {
 }
 
 .experience-item {
-  /* display: flex; */
-  /* align-items: flex-start; */
-  /* Align items to the top */
   margin-bottom: 15px;
 }
 
@@ -450,9 +447,6 @@ h4 {
   }
 
   .experience-item {
-    /* display: flex; */
-    /* align-items: flex-start; */
-    /* Align items to the top */
     margin-bottom: 15px;
   }
 
