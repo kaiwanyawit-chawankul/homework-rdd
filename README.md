@@ -1,6 +1,7 @@
 [![CI](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/ci.yml/badge.svg)](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/github-code-scanning/codeql)
 [![Dependabot Updates](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/kaiwanyawit-chawankul/homework-rdd/actions/workflows/dependabot/dependabot-updates)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kaiwanyawit-chawankul_homework-rdd&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=kaiwanyawit-chawankul_homework-rdd)
 
 # Free online resume builder
 
