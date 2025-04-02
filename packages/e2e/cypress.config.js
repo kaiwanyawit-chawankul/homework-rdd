@@ -7,7 +7,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    //baseUrl: process.env.REMOTE_URL || "http://localhost:5173",
+    baseUrl: process.env.REMOTE_URL || "http://localhost:5173",
     specPattern: "**/*.feature", // Matches your .feature files
     defaultBrowser: "chrome",
     setupNodeEvents(on, config) {

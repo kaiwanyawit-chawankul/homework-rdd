@@ -1,36 +1,19 @@
 import { Given, Then } from "@badeball/cypress-cucumber-preprocessor";
-
+import { visitWithResumes } from "../utils";
 Given("I open {string}", (url) => {
-  cy.visit(url);
+  visitWithResumes(url, false);
 });
 
 Given("I open {string} with resumes", (url) => {
-  cy.fixture("example.json").then((data) => {
-    // Set the data in localStorage
-    cy.window().then((window) => {
-      window.localStorage.setItem("resume", JSON.stringify(data)); // Adjust 'yourKey' as per your need
-    });
-  });
+  visitWithResumes(url, true);
+});
 
-  cy.fixture("localstorage1.json").then((data) => {
-    // Set the data in localStorage
-    cy.window().then((window) => {
-      window.localStorage.setItem("localstorage1", JSON.stringify(data)); // Adjust 'yourKey' as per your need
-    });
-  });
+Given("I open the app", () => {
+  visitWithResumes("/", false);
+});
 
-  cy.fixture("localstorage2.json").then((data) => {
-    // Set the data in localStorage
-    cy.window().then((window) => {
-      window.localStorage.setItem("localstorage2", JSON.stringify(data)); // Adjust 'yourKey' as per your need
-      window.localStorage.setItem(
-        "resume-list",
-        '["resume","localstorage1","localstorage2"]',
-      );
-    });
-  });
-
-  cy.visit(url);
+Given("I open the app with resumes", () => {
+  visitWithResumes("/", true);
 });
 
 Then("I select resume {string}", (resumeKey) => {
