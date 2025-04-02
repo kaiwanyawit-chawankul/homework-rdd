@@ -13,7 +13,8 @@ on:
 jobs:
   setup:
     runs-on: ubuntu-latest
-
+    env: # Set environment variables globally for this job
+      REMOTE_URL: https://local-resume.vercel.app
     steps:
       # Checkout the code
       - name: Checkout code
@@ -83,7 +84,6 @@ jobs:
     env: # Set environment variables globally for this job
       LHCI_URL: https://local-resume.vercel.app
       LHCI_RUN: 3
-      REMOTE_URL: https://local-resume.vercel.app
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
