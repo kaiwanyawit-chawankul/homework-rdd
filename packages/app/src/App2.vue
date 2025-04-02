@@ -87,7 +87,6 @@
 
 <script>
 import { defineComponent } from "vue";
-//import { useRoute } from 'vue-router';  // Import Vue Router hooks
 import ResumeReview from "./components/ResumeReview.vue";
 import LitePreview from "./components/LitePreview.vue";
 import NicePreview from "./components/NicePreview.vue";
