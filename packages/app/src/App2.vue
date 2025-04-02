@@ -8,7 +8,7 @@
       <!-- Buttons on Top -->
       <div class="top-buttons">
         <button @click="exportData" aria-label="Export Resume">
-          Export Data
+          Export Resume
         </button>
         <input type="file" @change="importData" aria-label="Import Data" />
         <button @click="printResume" aria-label="Print Resume">
