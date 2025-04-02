@@ -12,6 +12,7 @@ export default defineConfig({
       all: true, // Collect coverage for all files, not just the ones tested
       include: ["src/**/*.js", "src/**/*.vue"], // Path to the files you want to include in the coverage
       exclude: ["src/**/*.test.js", "src/**/*.test.vue"], // Exclude test files from coverage
+      reportsDirectory: "./../../coverage",
     },
   },
   resolve: {
