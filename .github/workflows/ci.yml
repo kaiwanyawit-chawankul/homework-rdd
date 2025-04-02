@@ -64,10 +64,6 @@ jobs:
       - name: Run tests
         run: npm run test
 
-      # Run test coverage
-      - name: Run tests
-        run: npm run test:coverage
-
       # Build the project (optional, depending on your workflow)
       - name: Build project
         run: npm run build
@@ -75,6 +71,11 @@ jobs:
       # Optionally, you can check for coverage if you want
       - name: Run coverage
         run: npm run test:coverage
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
       # Optionally, you can check for coverage if you want
       - name: Run e2e
