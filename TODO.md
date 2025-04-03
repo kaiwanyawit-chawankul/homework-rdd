@@ -3,7 +3,7 @@
 [x] Fix print preview
 [x] Fix nice template
 [x] split skills
-[] add ko-fi
+[x] add ko-fi
 [x] SEO tag
 [x] add lighthouse
 [x] add dependabot
@@ -14,5 +14,6 @@
 [] Fix ui when no resume data
 [] Fix resume data not gone after deletion
 [x] mono-repo
-[] Add e2e
+[x] Add e2e
 [] prevent overwritten on clone
+[] Add score - make it compatible with AST
