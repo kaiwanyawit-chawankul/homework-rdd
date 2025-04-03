@@ -17,3 +17,4 @@
 [x] Add e2e
 [] prevent overwritten on clone
 [] Add score - make it compatible with AST
+[] extract buttons into components
