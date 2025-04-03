@@ -97,4 +97,143 @@ describe("ExperienceEditor.vue", () => {
     const newExperienceSection = wrapper.find("#experience-1");
     expect(newExperienceSection.exists()).toBe(true);
   });
+
+  it("updates experience fields correctly", async () => {
+    // Change the company name input
+    const companyInput = wrapper.find("#company-0");
+    await companyInput.setValue("Company B");
+
+    // Verify that the experience's company is updated
+    expect(wrapper.vm.localExperiences[0].company).toBe("Company B");
+
+    // Similarly, test for other fields (e.g., title, start date, end date)
+    const titleInput = wrapper.find("#title-0");
+    await titleInput.setValue("Senior Developer");
+    expect(wrapper.vm.localExperiences[0].title).toBe("Senior Developer");
+  });
+
+  it("updates start and end dates correctly", async () => {
+    // Change the start date
+    const startDateInput = wrapper.find("#start-date-0");
+    await startDateInput.setValue("2021-06-01");
+    expect(wrapper.vm.localExperiences[0].startDate).toBe("2021-06-01");
+
+    // Change the end date
+    const endDateInput = wrapper.find("#end-date-0");
+    await endDateInput.setValue("2022-06-01");
+    expect(wrapper.vm.localExperiences[0].endDate).toBe("2022-06-01");
+  });
+
+  it("correctly splits tasks", async () => {
+    const experience = wrapper.vm.localExperiences[0];
+    experience.tasks[0] = "Task 1\nTask 2";
+
+    // Trigger the split task functionality
+    const splitTaskButton = wrapper.find("#split-task-0");
+    await splitTaskButton.trigger("click");
+
+    await wrapper.vm.$nextTick();
+
+    // Check that tasks were split correctly into individual fields
+    const taskInput1 = wrapper.find("#task-0-0");
+    const taskInput2 = wrapper.find("#task-0-1");
+
+    expect(taskInput1.element.value).toBe("Task 1");
+    expect(taskInput2.element.value).toBe("Task 2");
+  });
+
+  it("adds a task and updates the tasks array", async () => {
+    // Click the 'Add Task' button
+    const addTaskButton = wrapper.find("#add-task-0");
+    await addTaskButton.trigger("click");
+
+    await wrapper.vm.$nextTick();
+
+    // Check if the tasks array has been updated
+    expect(wrapper.vm.localExperiences[0].tasks.length).toBe(2);
+    const newTaskInput = wrapper.find("#task-0-1");
+    expect(newTaskInput.exists()).toBe(true);
+  });
+
+  it("handles no experiences gracefully", async () => {
+    // Mount the component with an empty experiences array
+    wrapper = mount(ExperienceEditor, {
+      propsData: {
+        experiences: [],
+      },
+    });
+
+    await wrapper.vm.$nextTick();
+
+    // Ensure that there's no initial experience section
+    const experienceSection = wrapper.find("#experience-0");
+    expect(experienceSection.exists()).toBe(false);
+
+    // Click the 'Add Experience' button
+    const addExperienceButton = wrapper.find("#add-experience");
+    await addExperienceButton.trigger("click");
+
+    await wrapper.vm.$nextTick();
+
+    // Verify that the experience section has been added
+    const newExperienceSection = wrapper.find("#experience-0");
+    expect(newExperienceSection.exists()).toBe(true);
+  });
+
+  it("generates dynamic IDs correctly", () => {
+    // Check dynamic ids for company input
+    const companyInput = wrapper.find("#company-0");
+    expect(companyInput.exists()).toBe(true);
+
+    // Check for other dynamic fields, e.g., title, start date, etc.
+    const titleInput = wrapper.find("#title-0");
+    expect(titleInput.exists()).toBe(true);
+
+    const startDateInput = wrapper.find("#start-date-0");
+    expect(startDateInput.exists()).toBe(true);
+
+    const endDateInput = wrapper.find("#end-date-0");
+    expect(endDateInput.exists()).toBe(true);
+  });
+
+  it("conditionally renders the split task button", async () => {
+    // Test that the Split Task button is visible only for the first task
+    const experience = wrapper.vm.localExperiences[0];
+    experience.tasks.push("Task 2");
+
+    await wrapper.vm.$nextTick();
+
+    const splitButton = wrapper.find("#split-task-0");
+    expect(splitButton.exists()).toBe(true);
+
+    // If no tasks are there, ensure the split button is not rendered
+    experience.tasks = [];
+    await wrapper.vm.$nextTick();
+
+    const splitButtonAfterRemoval = wrapper.find("#split-task-0");
+    expect(splitButtonAfterRemoval.exists()).toBe(false);
+  });
+
+  it("is properly exported and initialized", () => {
+    expect(ExperienceEditor).toBeTruthy();
+  });
+
+  it("handles empty experiences gracefully", async () => {
+    // Mount with no experiences
+    wrapper = mount(ExperienceEditor, {
+      propsData: {
+        experiences: [],
+      },
+    });
+
+    await wrapper.vm.$nextTick();
+
+    const addExperienceButton = wrapper.find("#add-experience");
+    await addExperienceButton.trigger("click");
+
+    await wrapper.vm.$nextTick();
+
+    const newExperienceSection = wrapper.find("#experience-0");
+    expect(newExperienceSection.exists()).toBe(true);
+  });
 });
