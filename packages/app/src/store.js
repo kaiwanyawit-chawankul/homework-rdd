@@ -21,7 +21,7 @@ const saveResumeList = (resumeList) => {
   localStorage.setItem(RESUME_LIST, JSON.stringify(resumeList));
 };
 
-const removeResume = (resumeId) => {
+const deleteResume = (resumeId) => {
   localStorage.removeItem(resumeId);
 };
 
@@ -35,7 +35,7 @@ const dataStore = {
   getResumeList: getResumeList,
   getResumeById: getResumeById,
   saveResumeList: saveResumeList,
-  removeResume: removeResume,
+  deleteResume: deleteResume,
   saveResume: saveResume,
   defaultResumeId: DEFAULT_ID,
 };

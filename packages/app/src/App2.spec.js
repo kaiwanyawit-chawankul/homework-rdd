@@ -1,5 +1,6 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { flushPromises } from "@vue/test-utils";
 import ResumeApp from "./App2.vue";
 import HeaderComponent from "./components/HeaderComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
@@ -15,7 +16,7 @@ vi.mock("./store", () => ({
     getResumeList: vi.fn(),
     saveResume: vi.fn(),
     saveResumeList: vi.fn(),
-    removeResume: vi.fn(),
+    deleteResume: vi.fn(),
     getResumeById: vi.fn(),
     defaultResumeId: "resume",
   },
@@ -50,6 +51,7 @@ describe("ResumeApp.vue", () => {
         },
       },
     });
+    wrapper.vm.selectedResume = "resume1";
   });
 
   afterEach(() => {
@@ -68,7 +70,7 @@ describe("ResumeApp.vue", () => {
     expect(wrapper.vm.resume.title).toBe("Test Resume");
     expect(wrapper.vm.resumeList).toEqual(["resume1", "resume2"]);
     expect(wrapper.vm.selectedPreviewLayout).toBe("lite");
-    expect(wrapper.vm.selectedResume).toBe("resume");
+    expect(wrapper.vm.selectedResume).toBe("resume1");
   });
 
   it("calls saveData when save button is clicked", async () => {
@@ -107,12 +109,60 @@ describe("ResumeApp.vue", () => {
     expect(dataStore.saveResume).toHaveBeenCalled();
   });
 
-  // it('deletes the selected resume when "Delete Resume" button is clicked', async () => {
-  //   global.confirm = vi.fn(() => true);
-  //   await wrapper.find('button[aria-label="Delete Resume"]').trigger('click');
-  //   expect(dataStore.removeResume).toHaveBeenCalled();
-  //   expect(dataStore.saveResumeList).toHaveBeenCalled();
-  // });
+  it("should display delete button when there are resumes", () => {
+    const deleteButton = wrapper.find('[aria-label="Delete Resume"]');
+    expect(deleteButton.exists()).toBe(true);
+  });
+
+  it("should confirm and delete resume when clicked", async () => {
+    const deleteButton = wrapper.find('[aria-label="Delete Resume"]');
+
+    // Mock window.confirm to return true (simulate user confirming the deletion)
+    vi.spyOn(window, "confirm").mockReturnValue(true);
+
+    // Click the delete button
+    await deleteButton.trigger("click");
+    await flushPromises(); // Wait for the promises to resolve
+
+    // Check if the confirm dialog was shown
+    expect(window.confirm).toHaveBeenCalledWith(
+      'Are you sure you want to delete the resume "resume1"?',
+    );
+
+    // Check if the delete methods were called
+    expect(dataStore.deleteResume).toHaveBeenCalledWith("resume1");
+    expect(dataStore.saveResumeList).toHaveBeenCalled();
+  });
+
+  it("should not delete resume if the user cancels", async () => {
+    const deleteButton = wrapper.find('[aria-label="Delete Resume"]');
+
+    // Mock window.confirm to return false (simulate user canceling the deletion)
+    vi.spyOn(window, "confirm").mockReturnValue(false);
+
+    // Click the delete button
+    await deleteButton.trigger("click");
+    await flushPromises();
+
+    // Ensure that nothing was deleted
+    expect(dataStore.deleteResume).not.toHaveBeenCalled();
+    expect(dataStore.saveResumeList).not.toHaveBeenCalled();
+  });
+
+  it("should update resumeList and selectedResume after deletion", async () => {
+    const deleteButton = wrapper.find('[aria-label="Delete Resume"]');
+
+    // Mock window.confirm to return true
+    vi.spyOn(window, "confirm").mockReturnValue(true);
+
+    // Click the delete button
+    await deleteButton.trigger("click");
+    await flushPromises();
+
+    // Ensure the resume list has been updated correctly
+    expect(dataStore.saveResumeList).toHaveBeenCalledWith(["resume2"]);
+    expect(wrapper.vm.selectedResume).toBe("resume2");
+  });
 
   it('clones the selected resume when "Clone Resume" button is clicked', async () => {
     global.prompt = vi.fn(() => "clonedResume");

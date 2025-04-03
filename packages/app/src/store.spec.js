@@ -82,7 +82,7 @@ describe("dataStore", () => {
   it("should remove a resume", () => {
     const resumeId = "resume1";
     localStorage.setItem(resumeId, JSON.stringify({ name: "Resume 1" }));
-    dataStore.removeResume(resumeId);
+    dataStore.deleteResume(resumeId);
     expect(localStorage.getItem(resumeId)).toBeNull();
   });
 
