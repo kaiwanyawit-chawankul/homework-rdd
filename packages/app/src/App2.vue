@@ -72,6 +72,7 @@
           <option value="nice">Nice Preview</option>
           <option value="left-right">Left-Right Preview</option>
           <option value="resume">Resume Preview</option>
+          <option value="ats">ATS Preview</option>
         </select>
       </div>
       <h2>Resume Preview</h2>
@@ -91,6 +92,7 @@ import ResumeReview from "./components/ResumeReview.vue";
 import LitePreview from "./components/LitePreview.vue";
 import NicePreview from "./components/NicePreview.vue";
 import LeftRightPreview from "./components/LeftRightPreview.vue";
+import ATSPreview from "./components/ATSPreview.vue";
 import dataStore from "./store";
 import HeaderComponent from "./components/HeaderComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
@@ -122,6 +124,8 @@ export default defineComponent({
           return LeftRightPreview;
         case "lite":
           return LitePreview;
+        case "ats":
+          return ATSPreview;
         default:
           return ResumeReview;
       }

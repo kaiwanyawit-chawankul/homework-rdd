@@ -73,11 +73,12 @@ describe("ResumeApp Rendering Tests", () => {
     );
     expect(previewLayoutSelect.exists()).toBe(true);
     const options = previewLayoutSelect.findAll("option");
-    expect(options.length).toBe(4); // Checking if all 4 options are available
+    expect(options.length).toBe(5); // Checking if all 4 options are available
     expect(options[0].text()).toBe("Lite Preview");
     expect(options[1].text()).toBe("Nice Preview");
     expect(options[2].text()).toBe("Left-Right Preview");
     expect(options[3].text()).toBe("Resume Preview");
+    expect(options[4].text()).toBe("ATS Preview");
   });
 
   it("should render the editor form with the save button", () => {
