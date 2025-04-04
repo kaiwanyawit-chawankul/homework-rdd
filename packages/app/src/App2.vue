@@ -102,7 +102,7 @@ export default defineComponent({
   components: {
     HeaderComponent,
     FooterComponent,
-    ResumeScore
+    ResumeScore,
   },
   data() {
     const resumeFromStore = dataStore.getDefaultResume();
