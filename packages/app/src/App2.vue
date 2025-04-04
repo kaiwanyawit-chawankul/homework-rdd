@@ -55,6 +55,7 @@
         >
           Save Resume
         </button>
+        <ResumeScore :resume="resume" />
       </form>
     </div>
 
@@ -94,12 +95,14 @@ import LeftRightPreview from "./components/LeftRightPreview.vue";
 import dataStore from "./store";
 import HeaderComponent from "./components/HeaderComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
+import ResumeScore from "./components/ResumeScore.vue";
 
 export default defineComponent({
   name: "ResumeApp",
   components: {
     HeaderComponent,
     FooterComponent,
+    ResumeScore
   },
   data() {
     const resumeFromStore = dataStore.getDefaultResume();
