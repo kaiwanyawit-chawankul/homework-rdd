@@ -17,7 +17,7 @@
           v-model="skillCategory.title"
           :id="'skill-category-title-' + categoryIndex"
           placeholder="Skill Category Title"
-          aria-describedby="skill-category-title-description"
+          :aria-labelledby="'skill-category-title-' + categoryIndex"
           class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
         />
 
@@ -88,7 +88,9 @@
               v-model="skill.name"
               :id="'skill-name-' + categoryIndex + '-' + skillIndex"
               placeholder="Skill Name"
-              aria-describedby="skill-name-description"
+              :aria-labelledby="
+                'skill-name-' + categoryIndex + '-' + skillIndex
+              "
               class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
             ></textarea>
           </div>
@@ -104,7 +106,9 @@
               v-model="skill.rating"
               :id="'skill-rating-' + categoryIndex + '-' + skillIndex"
               placeholder="Skill Rating"
-              aria-describedby="skill-rating-description"
+              :aria-labelledby="
+                'skill-rating-' + categoryIndex + '-' + skillIndex
+              "
               class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
           </div>

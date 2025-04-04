@@ -5,7 +5,7 @@
       :key="index"
       class="bg-white p-6 rounded-lg shadow-md space-y-6 relative"
       :id="'experience-' + index"
-      aria-labelledby="'experience-' + index + '-title'"
+      :aria-label="'experience-' + index + '-section'"
     >
       <!-- Remove Experience Button (X Button) -->
       <button
@@ -42,7 +42,7 @@
           v-model="experience.company"
           :id="'company-' + index"
           placeholder="Company Name"
-          aria-describedby="'company-' + index + '-description'"
+          :aria-label="'company-' + index + '-input'"
           class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
         />
       </div>
@@ -58,7 +58,7 @@
           v-model="experience.title"
           :id="'title-' + index"
           placeholder="Job Title"
-          aria-describedby="'title-' + index + '-description'"
+          :aria-label="'title-' + index + '-input'"
           class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
         />
       </div>
@@ -77,7 +77,7 @@
             :id="'start-date-' + index"
             placeholder="Start Date"
             type="date"
-            aria-describedby="'start-date-' + index + '-description'"
+            :aria-label="'start-date-' + index + '-input'"
             class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
@@ -94,7 +94,7 @@
             :id="'end-date-' + index"
             placeholder="End Date"
             type="date"
-            aria-describedby="'end-date-' + index + '-description'"
+            :aria-label="'end-date-' + index + '-input'"
             class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
@@ -158,7 +158,7 @@
               v-model="experience.tasks[taskIndex]"
               :id="'task-' + index + '-' + taskIndex"
               placeholder="Task"
-              aria-describedby="'task-' + index + '-' + taskIndex + '-description'"
+              :aria-label="'task-' + index + '-' + taskIndex + '-textarea'"
               class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
             ></textarea>
           </div>

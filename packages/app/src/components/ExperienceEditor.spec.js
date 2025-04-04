@@ -236,4 +236,59 @@ describe("ExperienceEditor.vue", () => {
     const newExperienceSection = wrapper.find("#experience-0");
     expect(newExperienceSection.exists()).toBe(true);
   });
+
+  it("adds an experience, fills out the form, and adds tasks", async () => {
+    // Mount the component with an empty experiences array
+    wrapper = mount(ExperienceEditor, {
+      props: {
+        experiences: [],
+      },
+    });
+
+    // Step 1: Add a new Experience
+    await wrapper.find("button#add-experience").trigger("click");
+
+    // Step 2: Check if the new experience fields appear (Company Name, Job Title, Start Date, End Date)
+    const companyInput = wrapper.find('input[aria-label^="company-"]');
+    const titleInput = wrapper.find('input[aria-label^="title-"]');
+    const startDateInput = wrapper.find('input[aria-label^="start-date-"]');
+    const endDateInput = wrapper.find('input[aria-label^="end-date-"]');
+
+    expect(companyInput.exists()).toBe(true);
+    expect(titleInput.exists()).toBe(true);
+    expect(startDateInput.exists()).toBe(true);
+    expect(endDateInput.exists()).toBe(true);
+
+    // Step 3: Fill out the Experience form fields
+    await companyInput.setValue("Company ABC");
+    await titleInput.setValue("Software Engineer");
+    await startDateInput.setValue("2020-01-01");
+    await endDateInput.setValue("2023-01-01");
+
+    // Step 4: Check if values are updated correctly
+    expect(companyInput.element.value).toBe("Company ABC");
+    expect(titleInput.element.value).toBe("Software Engineer");
+    expect(startDateInput.element.value).toBe("2020-01-01");
+    expect(endDateInput.element.value).toBe("2023-01-01");
+
+    // Step 5: Add a new task to the experience
+    await wrapper.find('button[id^="add-task-"]').trigger("click");
+
+    // Step 6: Fill out the task input field
+    const taskInput = wrapper.find('textarea[aria-label^="task-"]');
+    await taskInput.setValue("Developed new features");
+
+    // Step 7: Check if the task is filled in correctly
+    expect(taskInput.element.value).toBe("Developed new features");
+
+    // Optionally: Check the internal state if needed
+    const experiences = wrapper.vm.localExperiences;
+    expect(experiences.length).toBe(1); // 1 experience
+    expect(experiences[0].company).toBe("Company ABC");
+    expect(experiences[0].title).toBe("Software Engineer");
+    expect(experiences[0].startDate).toBe("2020-01-01");
+    expect(experiences[0].endDate).toBe("2023-01-01");
+    expect(experiences[0].tasks.length).toBe(2); // 1 task
+    expect(experiences[0].tasks[0]).toBe("Developed new features");
+  });
 });
