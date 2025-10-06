@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { defineAsyncComponent } from "vue";
 
-const Editor = defineAsyncComponent(() => import("./components/Editor.vue"));
+// Eager-load root Editor to avoid a critical request chain for the home route
+import Editor from "./components/Editor.vue";
 const InfoEditor = defineAsyncComponent(
   () => import("./components/InfoEditor.vue"),
 );
