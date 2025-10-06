@@ -2,17 +2,26 @@ import { describe, it, expect, vi } from "vitest";
 // import { mount, flushPromises  } from '@vue/test-utils';
 // import flushPromises from 'flush-promises'
 // Mock components
-const mockComponent = { template: "<div>Mock Component</div>" };
-vi.mock("./components/Editor.vue", () => ({ default: mockComponent }));
-vi.mock("./components/InfoEditor.vue", () => ({ default: mockComponent }));
-vi.mock("./components/ContactEditor.vue", () => ({ default: mockComponent }));
-vi.mock("./components/ExperienceEditor.vue", () => ({
-  default: mockComponent,
+vi.mock("./components/Editor.vue", () => ({
+  default: { template: "<div>Mock Component</div>" },
 }));
-vi.mock("./components/EducationEditor.vue", () => ({ default: mockComponent }));
-vi.mock("./components/SkillsEditor.vue", () => ({ default: mockComponent }));
+vi.mock("./components/InfoEditor.vue", () => ({
+  default: { template: "<div>Mock Component</div>" },
+}));
+vi.mock("./components/ContactEditor.vue", () => ({
+  default: { template: "<div>Mock Component</div>" },
+}));
+vi.mock("./components/ExperienceEditor.vue", () => ({
+  default: { template: "<div>Mock Component</div>" },
+}));
+vi.mock("./components/EducationEditor.vue", () => ({
+  default: { template: "<div>Mock Component</div>" },
+}));
+vi.mock("./components/SkillsEditor.vue", () => ({
+  default: { template: "<div>Mock Component</div>" },
+}));
 vi.mock("./components/OtherSectionsEditor.vue", () => ({
-  default: mockComponent,
+  default: { template: "<div>Mock Component</div>" },
 }));
 
 import router from "./router";
@@ -47,9 +56,13 @@ describe("Vue Router", () => {
     // Use a custom matcher to check for async components
     expect(router.options.routes).toEqual(expectedRoutes);
 
-    // Additionally check if the components are async
+    // Additionally check async/eager loading behavior
     router.options.routes.forEach((route) => {
-      expect(route.component.__asyncLoader).toBeDefined();
+      // Root routes use eager-loaded Editor
+      if (route.path === "/" || route.path === "/editor") {
+        expect(route.component.__asyncLoader).toBeUndefined();
+      }
+      // Child routes are async-loaded
       if (route.children) {
         route.children.forEach((childRoute) => {
           expect(childRoute.component.__asyncLoader).toBeDefined();
